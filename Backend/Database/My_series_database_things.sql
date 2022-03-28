@@ -31,3 +31,5 @@ SELECT * FROM comment;
       (2,'Not bad',3,3);
 
 DELETE FROM comment WHERE id = 4;
+
+SELECT * FROM comment;
