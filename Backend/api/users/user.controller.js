@@ -4,21 +4,19 @@ const {
     getUsers,
     updateUser,
     deleteUser,
-    getUserByUserEmail,
-    getCars,
-    getCarsABC,
-    getCarById,
-    getCarByHourlyRate,
-    createCar,
-    updateCar,
-    deleteCar,
-    getTrips,
-    getTripsCar,
-    getTripById,
-    getTripsByCarId,
-    createTrip,
-    updateTrip,
-    deleteTrip
+    getUserByUserName,
+    getSeries,
+    getSeriesABC,
+    getSeriesById,
+    getSeriesRelease,
+    createSeries,
+    updateSeries,
+    deleteSeries,
+    // getFavorites,
+    getFavoriteById,
+    createFavorites,
+    updateFavorite,
+    deleteFavorite
 } = require("./user.service.js");
 
 const {
@@ -63,18 +61,20 @@ module.exports = {
             });
         });
     },
-    createCar: (req, res) => {
+    createSeries: (req, res) => {
         const body = req.body;
         console.log(body);
-        createCar(body, (err, results) => {
+        createSeries(body, (err, results) => {
             console.log(results);
             if (err) {
                 console.log(err);
+                // console.log("Hiba");
                 return res.status(500).json({
                     success: -1,
                     message: "database connection error",
                     data: {}
-                });
+                })
+                ;
             }
             if (results.affectedRows == 0) {
                 return res.status(200).json({
@@ -90,10 +90,10 @@ module.exports = {
             });
         });
     },
-    createTrip: (req, res) => {
+    createFavorites: (req, res) => {
         const body = req.body;
         console.log(body);
-        createTrip(body, (err, results) => {
+        createFavorites(body, (err, results) => {
             console.log(results);
             if (err) {
                 console.log(err);
@@ -141,9 +141,9 @@ module.exports = {
             });
         });
     },
-    getTripById: (req, res) => {
+    getFavoriteById: (req, res) => {
         const id = req.params.id;
-        getTripById(id, (err, results) => {
+        getFavoriteById(id, (err, results) => {
             if (err) {
                 return res.status(500).json({
                     success: -1,
@@ -165,33 +165,9 @@ module.exports = {
             });
         });
     },
-    getTripsByCarId: (req, res) => {
-        const carId = req.params.carId;
-        getTripsByCarId(carId, (err, results) => {
-            if (err) {
-                return res.status(500).json({
-                    success: -1,
-                    message: "Server error",
-                    data: {}
-                });
-            }
-            if (!results) {
-                return res.status(200).json({
-                    success: 0,
-                    message: "Record not found!",
-                    data: {}
-                })
-            }
-            return res.status(200).json({
-                success: 1,
-                message: "Record found!",
-                data: results
-            });
-        });
-    },
-    getCarById: (req, res) => {
+    getSeriesById: (req, res) => {
         const id = req.params.id;
-        getCarById(id, (err, results) => {
+        getSeriesById(id, (err, results) => {
             if (err) {
                 return res.status(500).json({
                     success: -1,
@@ -213,9 +189,9 @@ module.exports = {
             });
         });
     },
-    getCarByHourlyRate: (req, res) => {
+    getSeriesRelease: (req, res) => {
         const hourlyRate = req.params.hourlyRate;
-        getCarByHourlyRate(hourlyRate, (err, results) => {
+        getSeriesRelease(Release, (err, results) => {
             if (err) {
                 return res.status(500).json({
                     success: -1,
@@ -260,8 +236,8 @@ module.exports = {
             });
         });
     },
-    getCars: (req, res) => {
-        getCars((err, results) => {
+    getSeries: (req, res) => {
+        getSeries((err, results) => {
             if (err) {
                 return res.status(500).json({
                     success: -1,
@@ -283,8 +259,8 @@ module.exports = {
             });
         });
     },
-    getCarsABC: (req, res) => {
-        getCarsABC((err, results) => {
+    getSeriesABC: (req, res) => {
+        getSeriesABC((err, results) => {
             if (err) {
                 return res.status(500).json({
                     success: -1,
@@ -306,52 +282,29 @@ module.exports = {
             });
         });
     },
-    getTrips: (req, res) => {
-        getTrips((err, results) => {
-            if (err) {
-                return res.status(500).json({
-                    success: -1,
-                    message: "Server error",
-                    data: []
-                });
-            }
-            if (results.length == 0) {
-                return res.status(200).json({
-                    success: 0,
-                    message: "No records",
-                    data: results
-                });
-            }
-            return res.status(200).json({
-                success: 1,
-                message: "Get successfully",
-                data: results
-            });
-        });
-    },
-    getTripsCar: (req, res) => {
-        getTripsCar((err, results) => {
-            if (err) {
-                return res.status(500).json({
-                    success: -1,
-                    message: "Server error",
-                    data: []
-                });
-            }
-            if (results.length == 0) {
-                return res.status(200).json({
-                    success: 0,
-                    message: "No records",
-                    data: results
-                });
-            }
-            return res.status(200).json({
-                success: 1,
-                message: "Get successfully",
-                data: results
-            });
-        });
-    },
+    // getFavorites: (req, res) => {
+    //     getFavorites((err, results) => {
+    //         if (err) {
+    //             return res.status(500).json({
+    //                 success: -1,
+    //                 message: "Server error",
+    //                 data: []
+    //             });
+    //         }
+    //         if (results.length == 0) {
+    //             return res.status(200).json({
+    //                 success: 0,
+    //                 message: "No records",
+    //                 data: results
+    //             });
+    //         }
+    //         return res.status(200).json({
+    //             success: 1,
+    //             message: "Get successfully",
+    //             data: results
+    //         });
+    //     });
+    // },
     updateUsers: (req, res) => {
         const body = req.body;
         const salt = genSaltSync(10);
@@ -378,9 +331,9 @@ module.exports = {
             });
         });
     },
-    updateCar: (req, res) => {
+    updateSeries: (req, res) => {
         const body = req.body;
-        updateCar(body, (err, results) => {
+        updateSeries(body, (err, results) => {
             if (err) {
                 return res.status(500).json({
                     success: -1,
@@ -402,9 +355,9 @@ module.exports = {
             });
         });
     },
-    updateTrip: (req, res) => {
+    updateFavorite: (req, res) => {
         const body = req.body;
-        updateTrip(body, (err, results) => {
+        updateFavorite(body, (err, results) => {
             if (err) {
                 return res.status(500).json({
                     success: -1,
@@ -452,9 +405,9 @@ module.exports = {
             });
         });
     },
-    deleteCar: (req, res) => {
+    deleteSeries: (req, res) => {
         const data = req.body;
-        deleteCar(data, (err, results) => {
+        deleteSeries(data, (err, results) => {
             // console.log(results);
             if (err) {
                 res.status(500).json({
@@ -478,9 +431,9 @@ module.exports = {
             });
         });
     },
-    deleteTrip: (req, res) => {
+    deleteFavorite: (req, res) => {
         const data = req.body;
-        deleteTrip(data, (err, results) => {
+        deleteFavorite(data, (err, results) => {
             // console.log(results);
             if (err) {
                 res.status(500).json({
@@ -506,14 +459,14 @@ module.exports = {
     },
     login: (req, res) => {
         const body = req.body;
-        getUserByUserEmail(body.email, (err, results) => {
+        getUserByUserName(body.userName, (err, results) => {
             if (err) {
                 console.log(err);
             }
             if (!results) {
                 return res.json({
                     success: 0,
-                    message: "Invalid email or password",
+                    message: "Invalid userName or password",
                     token: "",
                     data: {}
                 });
@@ -535,7 +488,7 @@ module.exports = {
             } else {
                 return res.json({
                     success: 0,
-                    message: "Invalid email or password",
+                    message: "Invalid userName or password",
                     token: "",
                     data: {}
                 });

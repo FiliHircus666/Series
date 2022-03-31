@@ -2,10 +2,10 @@ const pool = require("../../config/database.js");
 
 module.exports = {
     create: (data, callBack) => {
-        let queryString = `insert into registration
-            (firstName, lastName, gender, email, password, number)
+        let queryString = `insert into user
+            (userName,password,Email,permission)
             values
-            (?,?,?,?,?,?)
+            (?,?,?,?)
         `
         let params = Object.values(data);
         pool.query(queryString, params, (error, results, fields) => {
@@ -16,9 +16,9 @@ module.exports = {
             return callBack(null, results);
         });
     },
-    createCar: (data, callBack) => {
-        let queryString = `INSERT INTO cars
-                    (name,licenseNumber,hourlyRate)
+    createSeries: (data, callBack) => {
+        let queryString = `insert INTO series
+                    (name,release,ageLimit)
                     VALUES
                     (?, ?, ?)
         `
@@ -31,9 +31,9 @@ module.exports = {
             return callBack(null, results);
         });
     },
-    createTrip: (data, callBack) => {
-        let queryString = `INSERT INTO trips
-                            (numberOfMinutes, date, carId)
+    createFavorite: (data, callBack) => {
+        let queryString = `INSERT INTO favorite
+                            (userId,seriesId,Watched)
                             VALUES
                             (?, ?, ?)
         `
@@ -47,9 +47,25 @@ module.exports = {
             return callBack(null, results);
         });
     },
-    getUserByUserEmail: (email, callBack) => {
-        let queryString = `select * from registration where email = ?`;
-        let params = [email];
+    createComment: (data, callBack) => {
+        let queryString = `INSERT INTO comment
+                            (userId,comment,seriesId,ratePoint)
+                            VALUES
+                            (?, ?, ?,?)
+        `
+        let params = Object.values(data);
+        console.log("x:", data, params);
+        pool.query(queryString, params, (error, results, fields) => {
+            if (error) {
+                return callBack(error);
+
+            }
+            return callBack(null, results);
+        });
+    },
+    getUserByUserName: (userName, callBack) => {
+        let queryString = `select * from user where userName = ?`;
+        let params = [userName];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
                 callBack(error);
@@ -58,7 +74,7 @@ module.exports = {
         });
     },
     getUsers: callBack => {
-        const queryString = `select * from registration`;
+        const queryString = `select * from user`;
         const params = [];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
@@ -68,8 +84,8 @@ module.exports = {
             return callBack(null, results);
         });
     },
-    getCars: callBack => {
-        const queryString = `select * from cars`;
+    getSeries: callBack => {
+        const queryString = `select * from series`;
         const params = [];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
@@ -79,8 +95,8 @@ module.exports = {
             return callBack(null, results);
         });
     },
-    getCarsABC: callBack => {
-        const queryString = `select name, id from cars
+    getSeriesABC: callBack => {
+        const queryString = `select name, id from series
                                 order by name`;
         const params = [];
         pool.query(queryString, params, (error, results, fields) => {
@@ -91,21 +107,8 @@ module.exports = {
             return callBack(null, results);
         });
     },
-    getTrips: callBack => {
-        const queryString = `select * from trips`;
-        const params = [];
-        pool.query(queryString, params, (error, results, fields) => {
-            if (error) {
-                return callBack(error);
-
-            }
-            return callBack(null, results);
-        });
-    },
-    getTripsCar: callBack => {
-        const queryString = `select t.id, t.numberOfMinutes, DATE_FORMAT(t.date, "%Y.%m.%d %H:%i") date, c.name, c.id carId from trips t
-                                inner join cars c on c.id = t.carId
-                                order by t.date DESC`;
+    createFavorites: callBack => {
+        const queryString = `select * from Favorite`;
         const params = [];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
@@ -116,7 +119,7 @@ module.exports = {
         });
     },
     getUserByUserId: (id, callBack) => {
-        const queryString = `select * from registration where id=?`;
+        const queryString = `select * from user where id=?`;
         const params = [id];
         // params= []
         // const queryString = `select * from registration where id=${id}`;
@@ -130,8 +133,8 @@ module.exports = {
             return callBack(null, results);
         });
     },
-    getCarById: (id, callBack) => {
-        const queryString = `select * from cars where id=?`;
+    getSeriesById: (id, callBack) => {
+        const queryString = `select * from series where id=?`;
         const params = [id];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
@@ -141,13 +144,13 @@ module.exports = {
             return callBack(null, results[0]);
         });
     },
-    getCarByHourlyRate: (hourlyRate, callBack) => {
+    getSeriesRelease: (Release, callBack) => {
         //biztonságos megodás
-        // const queryString = `select * from cars where hourlyRate < ?`;
-        // const params = [hourlyRate];
+        const queryString = `select * from series where Release = ?`;
+        const params = [Release];
         //öngyilkos megoldás
-        const queryString = `select * from cars where hourlyRate < ${hourlyRate}`;
-        const params = [];
+        // const queryString = `select * from series where Release `;
+        // const params = [];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
                 return callBack(error);
@@ -156,8 +159,8 @@ module.exports = {
             return callBack(null, results);
         });
     },
-    getTripById: (id, callBack) => {
-        const queryString = `select id, numberOfMinutes, DATE_FORMAT(date, "%Y-%m-%dT%H:%i") date, carId from trips where id=?`;
+    getFavoriteById: (id, callBack) => {
+        const queryString = `select * from favorite where id=?`;
         const params = [id];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
@@ -165,22 +168,11 @@ module.exports = {
 
             }
             return callBack(null, results[0]);
-        });
-    },
-    getTripsByCarId: (carId, callBack) => {
-        const queryString = `select * from trips where carId=?`;
-        const params = [carId];
-        pool.query(queryString, params, (error, results, fields) => {
-            if (error) {
-                return callBack(error);
-
-            }
-            return callBack(null, results);
         });
     },
     updateUser: (data, callBack) => {
-        const queryString = `update registration set 
-                    firstName=?, lastName=?, gender=?, email=?, password=?, number=?
+        const queryString = `update user set 
+                    userName=?, password=?, Email=?, permission=?
                     where id=?`;
         const params = Object.values(data);
         pool.query(queryString, params, (error, results, fields) => {
@@ -192,18 +184,18 @@ module.exports = {
             return callBack(null, results);
         });
     },
-    updateCar: (data, callBack) => {
-        const queryString = `UPDATE cars set
-                name=?, licenseNumber=?, hourlyRate=?
+    updateSeries: (data, callBack) => {
+        const queryString = `UPDATE series set
+                name=?, release=?, ageLimit=?
                 where id= ?`;
         // const params = Object.values(data);
         const params = [
             data.name,
-            data.licenseNumber,
-            data.hourlyRate,
+            data.release,
+            data.ageLimit,
             data.id
         ]
-        console.log("Update car:",params);
+        console.log("Update series:",params);
         pool.query(queryString, params, (error, results, fields) => {
             console.log(params, queryString, results);
             if (error) {
@@ -213,16 +205,16 @@ module.exports = {
             return callBack(null, results);
         });
     },
-    updateTrip: (data, callBack) => {
-        const queryString = `UPDATE trips SET
-                numberOfMinutes=?, date=?, carId=?
+    updateFavorite: (data, callBack) => {
+        const queryString = `UPDATE favorite SET
+                userId, seriesId=?, Watched=?
                 where id=?;
                 `;
         // const params = Object.values(data);
         params = [
-            data.numberOfMinutes,
-            data.date,
-            data.carId,
+            data.userId,
+            data.seriesId,
+            data.Watced,
             data.id
         ]
         pool.query(queryString, params, (error, results, fields) => {
@@ -235,7 +227,7 @@ module.exports = {
         });
     },
     deleteUser: (data, callBack) => {
-        const queryString = `delete from registration where id = ?`;
+        const queryString = `delete from user where id = ?`;
         const params = [data.id];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
@@ -244,8 +236,8 @@ module.exports = {
             return callBack(null, results);
         });
     },
-    deleteCar: (data, callBack) => {
-        const queryString = `delete from cars where id = ?`;
+    deleteSeries: (data, callBack) => {
+        const queryString = `delete from series where id = ?`;
         const params = [data.id];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
@@ -254,8 +246,8 @@ module.exports = {
             return callBack(null, results);
         });
     },
-    deleteTrip: (data, callBack) => {
-        const queryString = `delete from trips where id = ?`;
+    deleteFavorite: (data, callBack) => {
+        const queryString = `delete from favorite where id = ?`;
         const params = [data.id];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {

@@ -5,20 +5,18 @@ const {
     updateUsers,
     deleteUser,
     login,
-    getCars,
-    getCarsABC,
-    getCarById,
-    getCarByHourlyRate,
-    createCar,
-    updateCar,
-    deleteCar,
-    getTrips,
-    getTripsCar,
-    getTripById,
-    getTripsByCarId,
-    createTrip,
-    updateTrip,
-    deleteTrip
+    getSeries,
+    getSeriesABC,
+    getSeriesById,
+    getSeriesRelease,
+    createSeries,
+    updateSeries,
+    deleteSeries,
+    // getFavorites,
+    getFavoriteById,
+    createFavorites,
+    updateFavorite,
+    deleteFavorite
 } = require("./user.controller.js")
 const router = require("express").Router();
 const {checkToken} = require("../../auth/token_validation");
@@ -31,21 +29,19 @@ router.delete("/users/", checkToken, deleteUser);
 router.post("/users/login", login)
 
 
-router.post("/cars", checkToken, createCar);
-router.get("/cars", checkToken, getCars);
-router.get("/carsabc", checkToken, getCarsABC);
-router.get("/cars/:id", checkToken, getCarById);
-router.get("/carshrst/:hourlyRate", checkToken, getCarByHourlyRate);
-router.put("/cars/", checkToken, updateCar);
-router.delete("/cars/", checkToken, deleteCar);
+router.post("/series", checkToken, createSeries);
+router.get("/series", checkToken, getSeries);
+router.get("/seriesabc", checkToken, getSeriesABC);
+router.get("/series/:id", checkToken, getSeriesById);
+router.get("/seriesr/:Release", checkToken, getSeriesRelease);
+router.put("/series/", checkToken, updateSeries);
+router.delete("/series/", checkToken, deleteSeries);
 
-router.post("/trips", checkToken, createTrip);
-router.get("/trips", checkToken, getTrips);
-router.get("/tripscar", checkToken, getTripsCar);
-router.get("/trips/:id", checkToken, getTripById);
-router.get("/tripsbycarid/:carId", checkToken, getTripsByCarId);
-router.put("/trips/", checkToken, updateTrip);
-router.delete("/trips/", checkToken, deleteTrip);
+router.post("/Favorites", checkToken, createFavorites);
+// router.get("/favorites", checkToken, getFavorites);
+router.get("/favorites/:id", checkToken, getFavoriteById);
+router.put("/favorite/", checkToken, updateFavorite);
+router.delete("/favorite/", checkToken, deleteFavorite);
 
 // app.get("/api", (req, res)=>{
 //     res.json({
