@@ -38,7 +38,7 @@ router.put("/user/favorite/series/", checkToken, updateSeries);
 router.delete("/user/favorite/series/", checkToken, deleteSeries);
 
 router.post("/favorite", checkToken, createFavorite);
-// router.get("/favorites", checkToken, getFavorites);
+// router.get("/favorites", checkToken, getFavoritess);
 router.get("/favorites/:id", checkToken, getFavoriteById);
 router.put("/favorite/", checkToken, updateFavorite);
 router.delete("/favorite/", checkToken, deleteFavorite);
