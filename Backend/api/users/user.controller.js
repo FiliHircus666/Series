@@ -14,7 +14,7 @@ const {
     deleteSeries,
     // getFavorites,
     getFavoriteById,
-    createFavorites,
+    createFavorite,
     updateFavorite,
     deleteFavorite
 } = require("./user.service.js");
@@ -90,10 +90,10 @@ module.exports = {
             });
         });
     },
-    createFavorites: (req, res) => {
+    createFavorite: (req, res) => {
         const body = req.body;
         console.log(body);
-        createFavorites(body, (err, results) => {
+        createFavorite(body, (err, results) => {
             console.log(results);
             if (err) {
                 console.log(err);

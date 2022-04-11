@@ -14,7 +14,7 @@ const {
     deleteSeries,
     // getFavorites,
     getFavoriteById,
-    createFavorites,
+    createFavorite,
     updateFavorite,
     deleteFavorite
 } = require("./user.controller.js")
@@ -30,14 +30,14 @@ router.post("/users/login", login)
 
 
 router.post("/user/favorite/series", checkToken, createSeries);
-router.get("/series", checkToken, getSeries);
+router.get("user/favorite/series", checkToken, getSeries);
 router.get("/seriesabc", checkToken, getSeriesABC);
 router.get("/series/:id", checkToken, getSeriesById);
 router.get("/seriesr/:Release", checkToken, getSeriesRelease);
-router.put("/series/", checkToken, updateSeries);
-router.delete("/series/", checkToken, deleteSeries);
+router.put("/user/favorite/series/", checkToken, updateSeries);
+router.delete("/user/favorite/series/", checkToken, deleteSeries);
 
-router.post("/Favorites", checkToken, createFavorites);
+router.post("/favorite", checkToken, createFavorite);
 // router.get("/favorites", checkToken, getFavorites);
 router.get("/favorites/:id", checkToken, getFavoriteById);
 router.put("/favorite/", checkToken, updateFavorite);

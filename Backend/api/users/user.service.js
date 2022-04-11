@@ -107,8 +107,8 @@ module.exports = {
             return callBack(null, results);
         });
     },
-    createFavorites: callBack => {
-        const queryString = `select * from Favorite`;
+    createFavorite: callBack => {
+        const queryString = `select * from favorite`;
         const params = [];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
@@ -186,12 +186,12 @@ module.exports = {
     },
     updateSeries: (data, callBack) => {
         const queryString = `UPDATE series set
-                name=?, release=?, ageLimit=?
+                name=?, releaseDate=?, ageLimit=?
                 where id= ?`;
         // const params = Object.values(data);
         const params = [
             data.name,
-            data.release,
+            data.releaseDate,
             data.ageLimit,
             data.id
         ]

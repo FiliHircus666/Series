@@ -83,27 +83,27 @@ Content-Type: application/json
     "ageLimit": "16"
 }
 
-### car módosítása
-put http://localhost:3000/api//cars
+### series módosítása
+put http://localhost:3000/api/user/favorite/series
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTEyNTYzOCwiZXhwIjoxNjQ1MTI5MjM4fQ.62U_xM_tXvohkZ1TlZqxSLLil5Y1dTbfmPgB2JYUlsQ
 
 {
-    "name": "Merci41",
-    "licenseNumber": "MMM-441",
-    "hourlyRate": 6000,
-    "id": 4
+    "name": "Vikings",
+    "releaseDate": "2013",
+    "ageLimit": "16",
+    "id": 2
 }
 
-### Delete car
-delete http://localhost:3000/api/cars
+### Delete Series
+delete http://localhost:3000/api/user/favorite/series
 Content-Type: application/json
 
 {
-    "id": 3
+    "id": 1
 }
 
-### get trips
+### get favrite
 get http://localhost:3000/api/trips
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTQ0NjI3MiwiZXhwIjoxNjQ1NDQ5ODcyfQ.mt6Ga598tVLQ3QXty4BF-amaU2Jbaww4U5z5AaUXvsg
 
@@ -120,15 +120,15 @@ Authorization: Bearer
 get http://localhost:3000/api/tripsbycarid/2
 Authorization: Bearer
 
-### trip hozzáadása
-post http://localhost:3000/api/trips
+### favorite hozzáadása
+post http://localhost:3000/api/favorite
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTQ0NjI3MiwiZXhwIjoxNjQ1NDQ5ODcyfQ.mt6Ga598tVLQ3QXty4BF-amaU2Jbaww4U5z5AaUXvsg
 
 { 
-    "numberOfMinutes": "99", 
-    "date": "2022-02-21T13:21", 
-    "carId": 6
+    "userId": "14", 
+    "seriesId": "1", 
+    "Watched": "watched"
  }
 
 ### trip módosítása
