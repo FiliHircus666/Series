@@ -17,8 +17,8 @@ module.exports = {
         });
     },
     createSeries: (data, callBack) => {
-        let queryString = `insert INTO series
-                    (name,release,ageLimit)
+        let queryString = `INSERT INTO series
+                    (name,releaseDate,ageLimit)
                     VALUES
                     (?, ?, ?)
         `

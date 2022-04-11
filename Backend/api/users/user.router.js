@@ -29,7 +29,7 @@ router.delete("/users/", checkToken, deleteUser);
 router.post("/users/login", login)
 
 
-router.post("/series", checkToken, createSeries);
+router.post("/user/favorite/series", checkToken, createSeries);
 router.get("/series", checkToken, getSeries);
 router.get("/seriesabc", checkToken, getSeriesABC);
 router.get("/series/:id", checkToken, getSeriesById);
