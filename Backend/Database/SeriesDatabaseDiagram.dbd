@@ -54,8 +54,8 @@
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
-              <X>440 px</X>
-              <Y>-110 px</Y>
+              <X>430 px</X>
+              <Y>-10 px</Y>
             </Location>
             <Size>
               <Width>167 px</Width>
@@ -123,8 +123,8 @@
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
-              <X>180 px</X>
-              <Y>60 px</Y>
+              <X>380 px</X>
+              <Y>-340 px</Y>
             </Location>
             <Size>
               <Width>176 px</Width>
@@ -153,40 +153,40 @@
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>82 px</X>
-                  <Y>0 px</Y>
+                  <X>160 px</X>
+                  <Y>72 px</Y>
                 </Location>
-                <Anchors>Left Right</Anchors>
-                <Align>Bottom</Align>
+                <Anchors>None</Anchors>
+                <Align>Right</Align>
                 <CustomProperties>
                   <OID>7</OID>
-                  <PortType>FloatAnchor</PortType>
+                  <PortType>FixedAnchor</PortType>
                 </CustomProperties>
               </Port>
               <Port>
                 <Location>
-                  <X>92 px</X>
-                  <Y>0 px</Y>
+                  <X>170 px</X>
+                  <Y>27 px</Y>
                 </Location>
-                <Anchors>Left Right</Anchors>
-                <Align>Top</Align>
+                <Anchors>None</Anchors>
+                <Align>Right</Align>
                 <CustomProperties>
                   <OID>8</OID>
-                  <PortType>FloatAnchor</PortType>
+                  <PortType>FixedAnchor</PortType>
                 </CustomProperties>
               </Port>
             </PortAnchors>
             <BendPoints>
               <PointD>
-                <X>12 px</X>
-                <Y>-120 px</Y>
+                <X>200 px</X>
+                <Y>-178 px</Y>
               </PointD>
               <PointD>
-                <X>-48 px</X>
-                <Y>-120 px</Y>
+                <X>200 px</X>
+                <Y>57 px</Y>
               </PointD>
             </BendPoints>
-            <IsManuallyRouted>false</IsManuallyRouted>
+            <IsManuallyRouted>true</IsManuallyRouted>
             <DbOid>
               <Path>seriesdatabase.favorite.FK_favorite_series_id</Path>
               <TypeName>ForeignKey</TypeName>
@@ -202,11 +202,11 @@
             <PortAnchors>
               <Port xsi:type="LinkPort">
                 <Location>
-                  <X>60 px</X>
-                  <Y>-95 px</Y>
+                  <X>-106 px</X>
+                  <Y>-117.5 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
-                <Align>Bottom</Align>
+                <Align>Right</Align>
                 <CustomProperties>
                   <OID>9</OID>
                   <PortType>FixedAnchor</PortType>
@@ -244,14 +244,14 @@
               </Port>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>55 px</Y>
+                  <X>4 px</X>
+                  <Y>32 px</Y>
                 </Location>
-                <Anchors>Top Bottom</Anchors>
+                <Anchors>None</Anchors>
                 <Align>Left</Align>
                 <CustomProperties>
                   <OID>13</OID>
-                  <PortType>FloatAnchor</PortType>
+                  <PortType>FixedAnchor</PortType>
                 </CustomProperties>
               </Port>
             </PortAnchors>
@@ -262,7 +262,7 @@
               </PointD>
               <PointD>
                 <X>114 px</X>
-                <Y>115 px</Y>
+                <Y>-308 px</Y>
               </PointD>
             </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
@@ -281,8 +281,8 @@
             <PortAnchors>
               <Port xsi:type="LinkPort">
                 <Location>
-                  <X>-20 px</X>
-                  <Y>-155 px</Y>
+                  <X>-153 px</X>
+                  <Y>113 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
                 <Align>Right</Align>
@@ -311,14 +311,14 @@
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>55 px</Y>
+                  <X>-1 px</X>
+                  <Y>89 px</Y>
                 </Location>
-                <Anchors>Top Bottom</Anchors>
+                <Anchors>None</Anchors>
                 <Align>Left</Align>
                 <CustomProperties>
                   <OID>17</OID>
-                  <PortType>FloatAnchor</PortType>
+                  <PortType>FixedAnchor</PortType>
                 </CustomProperties>
               </Port>
               <Port>
@@ -337,7 +337,7 @@
             <BendPoints>
               <PointD>
                 <X>380 px</X>
-                <Y>-55 px</Y>
+                <Y>79 px</Y>
               </PointD>
               <PointD>
                 <X>380 px</X>
@@ -360,8 +360,8 @@
             <PortAnchors>
               <Port xsi:type="LinkPort">
                 <Location>
-                  <X>232.5 px</X>
-                  <Y>-112 px</Y>
+                  <X>222.5 px</X>
+                  <Y>22 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
                 <Align>Left</Align>
@@ -390,8 +390,8 @@
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>-2 px</X>
-                  <Y>91 px</Y>
+                  <X>12 px</X>
+                  <Y>57 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
                 <Align>Left</Align>
@@ -402,11 +402,11 @@
               </Port>
               <Port>
                 <Location>
-                  <X>Undefined</X>
-                  <Y>31 px</Y>
+                  <X>0 px</X>
+                  <Y>31.75 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
-                <Align>Right</Align>
+                <Align>Left</Align>
                 <CustomProperties>
                   <OID>23</OID>
                   <PortType>FloatAnchor</PortType>
@@ -415,12 +415,12 @@
             </PortAnchors>
             <BendPoints>
               <PointD>
-                <X>420 px</X>
-                <Y>-19 px</Y>
+                <X>281 px</X>
+                <Y>47 px</Y>
               </PointD>
               <PointD>
-                <X>420 px</X>
-                <Y>91 px</Y>
+                <X>281 px</X>
+                <Y>-308.25 px</Y>
               </PointD>
             </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
@@ -439,8 +439,8 @@
             <PortAnchors>
               <Port xsi:type="LinkPort">
                 <Location>
-                  <X>20 px</X>
-                  <Y>-55 px</Y>
+                  <X>149 px</X>
+                  <Y>177.625 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
                 <Align>Left</Align>
@@ -461,8 +461,8 @@
           <ScaleMode>Free</ScaleMode>
           <Scale>1</Scale>
           <Location>
-            <X>-562 px</X>
-            <Y>-336 px</Y>
+            <X>-602 px</X>
+            <Y>-376 px</Y>
           </Location>
         </ViewPort>
       </Model>

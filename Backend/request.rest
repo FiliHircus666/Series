@@ -22,9 +22,9 @@ post http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-    "userName": "user234",
+    "userName": "user235",
     "password": "userPass",
-    "Email": "user234@gmail.com",
+    "Email": "user235@gmail.com",
     "permission": 2
 }
 
@@ -49,7 +49,7 @@ delete http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-    "id": 13
+    "id": 11
 }
 
 
@@ -92,7 +92,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiO
     "name": "Vikings",
     "releaseDate": "2013",
     "ageLimit": "16",
-    "id": 2
+    "id": 11
 }
 
 ### Delete Series
@@ -100,7 +100,7 @@ delete http://localhost:3000/api/user/favorite/series
 Content-Type: application/json
 
 {
-    "id": 1
+    "id": 11
 }
 
 ### get favrite
