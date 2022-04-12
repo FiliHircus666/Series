@@ -1,21 +1,27 @@
 const {
+    //create
     createUser,
-    getUserByUserId,
-    getUsers,
-    updateUsers,
-    deleteUser,
-    login,
-    getSeries,
-    getSeriesABC,
-    getSeriesById,
-    getSeriesRelease,
     createSeries,
-    updateSeries,
-    deleteSeries,
-    // getFavorites,
-    getFavoriteById,
     createFavorite,
+    createComment,
+    //login
+    login,
+    //get
+    getUsers,
+    getSeries,
+    getFavorites,
+    getUserByUserId,
+    getSeriesById,
+    getFavoriteById,
+    getSeriesABC,
+    getSeriesRelease,
+    //update
+    updateUsers,
+    updateSeries,
     updateFavorite,
+    //delete
+    deleteUser,
+    deleteSeries,
     deleteFavorite
 } = require("./user.controller.js")
 const router = require("express").Router();
@@ -37,11 +43,18 @@ router.get("/seriesr/:Release", checkToken, getSeriesRelease);
 router.put("/user/favorite/series/", checkToken, updateSeries);
 router.delete("/user/favorite/series/", checkToken, deleteSeries);
 
-router.post("/favorite", checkToken, createFavorite);
-// router.get("/favorites", checkToken, getFavoritess);
+router.post("/user/series/favorite", checkToken, createFavorite);
+router.get("/user/series/favorite", checkToken, getFavorites);
 router.get("/favorites/:id", checkToken, getFavoriteById);
-router.put("/favorite/", checkToken, updateFavorite);
-router.delete("/favorite/", checkToken, deleteFavorite);
+router.put("/user/series/favorite", checkToken, updateFavorite);
+router.delete("/user/series/favorite", checkToken, deleteFavorite);
+
+router.post("/user/series/favorite", checkToken, createComment);
+router.get("/user/series/favorite", checkToken, getComments);
+router.get("/favorites/:id", checkToken, getCommnetById);
+router.put("/user/series/favorite", checkToken, updateComment);
+router.delete("/user/series/favorite", checkToken, deleteComment);
+
 
 // app.get("/api", (req, res)=>{
 //     res.json({

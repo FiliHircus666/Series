@@ -107,8 +107,8 @@ module.exports = {
             return callBack(null, results);
         });
     },
-    createFavorite: callBack => {
-        const queryString = `select * from favorite`;
+    getFavorites: callBack => {
+        const queryString = `select  * from favorite`;
         const params = [];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
@@ -207,14 +207,14 @@ module.exports = {
     },
     updateFavorite: (data, callBack) => {
         const queryString = `UPDATE favorite SET
-                userId, seriesId=?, Watched=?
+                userId=?, seriesId=?, Watched=?
                 where id=?;
                 `;
         // const params = Object.values(data);
         params = [
             data.userId,
             data.seriesId,
-            data.Watced,
+            data.Watched,
             data.id
         ]
         pool.query(queryString, params, (error, results, fields) => {

