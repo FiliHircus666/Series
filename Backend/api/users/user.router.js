@@ -1,28 +1,23 @@
 const {
-    //create
     createUser,
-    createSeries,
-    createFavorite,
-    createComment,
-    //login
-    login,
-    //get
-    getUsers,
-    getSeries,
-    getFavorites,
     getUserByUserId,
-    getSeriesById,
-    getFavoriteById,
-    getSeriesABC,
-    getSeriesRelease,
-    //update
+    getUsers,
     updateUsers,
-    updateSeries,
-    updateFavorite,
-    //delete
     deleteUser,
+    login,
+    getSeries,
+    getSeriesABC,
+    getSeriesById,
+    getSeriesRelease,
+    createSeries,
+    updateSeries,
     deleteSeries,
-    deleteFavorite
+    getFavorites,
+    getFavoriteById,
+    createFavorite,
+    updateFavorite,
+    deleteFavorite,
+    createComment
 } = require("./user.controller.js")
 const router = require("express").Router();
 const {checkToken} = require("../../auth/token_validation");
@@ -35,8 +30,8 @@ router.delete("/users/", checkToken, deleteUser);
 router.post("/users/login", login)
 
 
-router.post("/user/favorite/series", checkToken, createSeries);
-router.get("user/favorite/series", checkToken, getSeries);
+router.post("/user/series", checkToken, createSeries);
+router.get("/user/series", checkToken, getSeries);
 router.get("/seriesabc", checkToken, getSeriesABC);
 router.get("/series/:id", checkToken, getSeriesById);
 router.get("/seriesr/:Release", checkToken, getSeriesRelease);
@@ -50,10 +45,10 @@ router.put("/user/series/favorite", checkToken, updateFavorite);
 router.delete("/user/series/favorite", checkToken, deleteFavorite);
 
 router.post("/user/series/favorite", checkToken, createComment);
-router.get("/user/series/favorite", checkToken, getComments);
-router.get("/favorites/:id", checkToken, getCommnetById);
-router.put("/user/series/favorite", checkToken, updateComment);
-router.delete("/user/series/favorite", checkToken, deleteComment);
+// router.get("/user/series/favorite", checkToken, getComments);
+// router.get("/favorites/:id", checkToken, getCommentById);
+// router.put("/user/series/favorite", checkToken, updateComment);
+// router.delete("/user/series/favorite", checkToken, deleteComment);
 
 
 // app.get("/api", (req, res)=>{

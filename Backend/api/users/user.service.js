@@ -49,7 +49,7 @@ module.exports = {
     },
     createComment: (data, callBack) => {
         let queryString = `INSERT INTO comment
-                            (userId,comment,seriesId,ratePoint)
+                            (userId,userComment,seriesId,ratePoint)
                             VALUES
                             (?, ?, ?,?)
         `

@@ -12,7 +12,7 @@ SELECT * FROM comment;
     
 
   INSERT INTO series
-    (name,`Release`,ageLimit)
+    (name,releaseDate,ageLimit)
     VALUES
     ('The Last Kingdom','2015',16),
     ('Vikings','2013',16),
@@ -34,5 +34,5 @@ DELETE FROM comment WHERE id = 4;
 
 SELECT * FROM comment;
 DELETE FROM user;
-DELETE FROM  series;
-SELECT * FROM user; 
+DELETE FROM series;
+ 

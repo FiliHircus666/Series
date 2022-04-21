@@ -79,13 +79,13 @@ module.exports = {
             if (results.affectedRows == 0) {
                 return res.status(200).json({
                     success: 0,
-                    message: "Not created user",
+                    message: "Not created series",
                     data: results
                 });
             }
             return res.status(200).json({
                 success: 1,
-                message: "Created user",
+                message: "Created series",
                 data: results
             });
         });
@@ -117,10 +117,10 @@ module.exports = {
             });
         });
     },
-    createCommnet: (req, res) => {
+    createComment: (req, res) => {
         const body = req.body;
         console.log(body);
-        createCommnet(body, (err, results) => {
+        createComment(body, (err, results) => {
             console.log(results);
             if (err) {
                 console.log(err);
@@ -133,13 +133,13 @@ module.exports = {
             if (results.affectedRows == 0) {
                 return res.status(200).json({
                     success: 0,
-                    message: "Not created commnet",
+                    message: "Not created comment",
                     data: results
                 });
             }
             return res.status(200).json({
                 success: 1,
-                message: "Created commnet",
+                message: "Created comment",
                 data: results
             });
         });
