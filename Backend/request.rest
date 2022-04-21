@@ -14,7 +14,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiO
 
 
 ### Egy user
-get http://localhost:3000/api/users/7
+get http://localhost:3000/api/users/10
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NDMxNTE5NCwiZXhwIjoxNjQ0MzE4Nzk0fQ.q2ih8UiVs51Pa3UEc908O6tLt5Upl9NOlidEmQSksMQ
 
 ### User hozzáadása
@@ -56,7 +56,7 @@ Content-Type: application/json
 ### series
 
 ### get Series
-get http://localhost:3000/api/series
+get http://localhost:3000/api/user/series
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTEyNTYzOCwiZXhwIjoxNjQ1MTI5MjM4fQ.62U_xM_tXvohkZ1TlZqxSLLil5Y1dTbfmPgB2JYUlsQ
 
 ### get series abc-ben
@@ -65,7 +65,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiO
 
 
 ### Egy car
-get http://localhost:3000/api/series/4
+get http://localhost:3000/api/user/series/
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTQ0NjI3MiwiZXhwIjoxNjQ1NDQ5ODcyfQ.mt6Ga598tVLQ3QXty4BF-amaU2Jbaww4U5z5AaUXvsg
 
 ### Autók cars ahol hourlyRate: hr kisebb mint (smaller than): st 5000
@@ -92,7 +92,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiO
     "name": "Vikings",
     "releaseDate": "2013",
     "ageLimit": "16",
-    "id": 11
+    "id": 12
 }
 
 ### Delete Series
@@ -104,7 +104,7 @@ Content-Type: application/json
 }
 
 ### get favorite
-get http://localhost:3000/api/user/favorite
+get http://localhost:3000/api/user/series/favorite
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTQ0NjI3MiwiZXhwIjoxNjQ1NDQ5ODcyfQ.mt6Ga598tVLQ3QXty4BF-amaU2Jbaww4U5z5AaUXvsg
 
 ### get favorite series
@@ -113,7 +113,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiO
 
 
 ### Egy favorite
-get http://localhost:3000/api/user/favorite
+get http://localhost:3000/api/user/series/favorite
 Authorization: Bearer
 
 # ### Egy autó tripjei trip
@@ -154,6 +154,15 @@ Content-Type: application/json
 ### Get favorite
 get http://localhost:3000/api/user/series/favorite
 
+### Create Comment
+post http://localhost:3000/api/user/favorite/series/comment
+Content-Type: application/json
+{ 
+    "userId": "10", 
+    "userComment": "I not like this", 
+    "seriesId": "12",
+    "ratePoint": 3
+ }
 
 # ### Betörés
 # ### adatbázis lekérdezése
