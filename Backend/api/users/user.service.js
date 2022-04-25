@@ -48,10 +48,10 @@ module.exports = {
         });
     },
     createComment: (data, callBack) => {
-        let queryString = `INSERT INTO comment
-                            (userId,userComment,seriesId,ratePoint)
-                            VALUES
-                            (?, ?, ?,?)
+        let queryString = ` INSERT INTO comment
+        (userId,userComment,seriesId,ratePoint)
+        VALUES
+        (?,?,?,?)
         `
         let params = Object.values(data);
         console.log("x:", data, params);
@@ -131,6 +131,17 @@ module.exports = {
             }
             // return callBack(null, results[0]);
             return callBack(null, results);
+        });
+    },
+    getComments: (id, callBack) => {
+        const queryString = `select * from comment where id=?`;
+        const params = [id];
+        pool.query(queryString, params, (error, results, fields) => {
+            if (error) {
+                return callBack(error);
+
+            }
+            return callBack(null, results[0]);
         });
     },
     getSeriesById: (id, callBack) => {
