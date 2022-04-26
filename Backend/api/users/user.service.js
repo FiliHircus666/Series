@@ -48,10 +48,10 @@ module.exports = {
         });
     },
     createComment: (data, callBack) => {
-        let queryString = ` INSERT INTO comment
+        let queryString = `INSERT INTO comment
         (userId,userComment,seriesId,ratePoint)
         VALUES
-        (?,?,?,?)
+        (?,?,?,?);
         `
         let params = Object.values(data);
         console.log("x:", data, params);
@@ -133,15 +133,15 @@ module.exports = {
             return callBack(null, results);
         });
     },
-    getComments: (id, callBack) => {
-        const queryString = `select * from comment where id=?`;
-        const params = [id];
+    getComments: callBack => {
+        const queryString = `select  * from comment`;
+        const params = [];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
                 return callBack(error);
 
             }
-            return callBack(null, results[0]);
+            return callBack(null, results);
         });
     },
     getSeriesById: (id, callBack) => {
@@ -237,6 +237,28 @@ module.exports = {
             return callBack(null, results);
         });
     },
+    updateComment: (data, callBack) => {
+        const queryString = `UPDATE comment SET
+                userId=?, userComment=?, seriesId=?,ratePoint = ? 
+                where id=?;
+                `;
+        // const params = Object.values(data);
+        params = [
+            data.userId,
+            data.userComment,
+            data.seriesId,
+            data.ratePoint,
+            data.id
+        ]
+        pool.query(queryString, params, (error, results, fields) => {
+            // console.log(params, queryString, results);
+            if (error) {
+                return callBack(error);
+
+            }
+            return callBack(null, results);
+        });
+    },
     deleteUser: (data, callBack) => {
         const queryString = `delete from user where id = ?`;
         const params = [data.id];
@@ -259,6 +281,16 @@ module.exports = {
     },
     deleteFavorite: (data, callBack) => {
         const queryString = `delete from favorite where id = ?`;
+        const params = [data.id];
+        pool.query(queryString, params, (error, results, fields) => {
+            if (error) {
+                return callBack(error);
+            }
+            return callBack(null, results);
+        });
+    },
+    deleteComment: (data, callBack) => {
+        const queryString = `delete from comment where id = ?`;
         const params = [data.id];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {

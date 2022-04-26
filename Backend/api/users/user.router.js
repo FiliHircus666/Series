@@ -18,7 +18,9 @@ const {
     updateFavorite,
     deleteFavorite,
     createComment,
-    getComments
+    getComments,
+    updateComment,
+    deleteComment
 } = require("./user.controller.js")
 const router = require("express").Router();
 const {checkToken} = require("../../auth/token_validation");
@@ -46,10 +48,10 @@ router.put("/user/series/favorite", checkToken, updateFavorite);
 router.delete("/user/series/favorite", checkToken, deleteFavorite);
 
 router.post("/user/series/comment", checkToken, createComment);
-router.get("/comment/user/series", checkToken, getComments);
+router.get("/user/series/comment", checkToken, getComments);
 // router.get("/favorites/:id", checkToken, getCommentById);
-// router.put("/user/series/favorite", checkToken, updateComment);
-// router.delete("/user/series/favorite", checkToken, deleteComment);
+router.put("/user/series/comment", checkToken, updateComment);
+router.delete("/user/series/comment", checkToken, deleteComment);
 
 
 // app.get("/api", (req, res)=>{

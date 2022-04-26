@@ -25,10 +25,10 @@ SELECT * FROM comment;
     (3,1,'in progress');
 
     INSERT INTO comment
-      (userId,comment,seriesId,ratePoint)
+      (userId,userComment,seriesId,ratePoint)
       VALUES
-      (2,'I not like this',1,5),
-      (2,'Not bad',3,3);
+      (10,'I not like this',1,5);
+      
 
 DELETE FROM comment WHERE id = 4;
 

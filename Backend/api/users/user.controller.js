@@ -16,7 +16,11 @@ const {
     getFavoriteById,
     createFavorite,
     updateFavorite,
-    deleteFavorite
+    deleteFavorite,
+    createComment,
+    getComments,
+    updateComment,
+    deleteComment
 } = require("./user.service.js");
 
 const {
@@ -333,7 +337,7 @@ module.exports = {
         });
     },
     getComments: (req, res) => {
-        getFavorites((err, results) => {
+        getComments((err, results) => {
             if (err) {
                 return res.status(500).json({
                     success: -1,
@@ -429,6 +433,30 @@ module.exports = {
             });
         });
     },
+    updateComment: (req, res) => {
+        const body = req.body;
+        updateComment(body, (err, results) => {
+            if (err) {
+                return res.status(500).json({
+                    success: -1,
+                    message: "Server error",
+                    data: {}
+                });
+            }
+            if (results.affectedRows == 0) {
+                return res.status(200).json({
+                    success: 0,
+                    message: "Not updated",
+                    data: results
+                });
+            }
+            return res.status(200).json({
+                success: 1,
+                message: "Updated successfully",
+                data: results
+            });
+        });
+    },
     deleteUser: (req, res) => {
         const data = req.body;
         deleteUser(data, (err, results) => {
@@ -484,6 +512,32 @@ module.exports = {
     deleteFavorite: (req, res) => {
         const data = req.body;
         deleteFavorite(data, (err, results) => {
+            // console.log(results);
+            if (err) {
+                res.status(500).json({
+                    deletedRows: 0,
+                    success: -1,
+                    message: "Server error"
+                })
+                return;
+            }
+            if (results.affectedRows == 0) {
+                return res.status(200).json({
+                    success: 0,
+                    message: "Record Not Found",
+                    data: results
+                });
+            }
+            return res.status(200).json({
+                success: 1,
+                message: "Deleted successfully",
+                data: results
+            });
+        });
+    },
+    deleteComment: (req, res) => {
+        const data = req.body;
+        deleteComment(data, (err, results) => {
             // console.log(results);
             if (err) {
                 res.status(500).json({
