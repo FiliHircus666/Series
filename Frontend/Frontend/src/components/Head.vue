@@ -9,7 +9,6 @@ export default {
     name: "Head"
 }
 </script>
-
+  
 <style>
-
 </style>

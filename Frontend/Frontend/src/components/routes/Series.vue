@@ -1,19 +1,19 @@
 <template>
     <div class="row my-border">
         <div class="col-8">
-            <h1>Autópark</h1>
+            <h1>Series</h1>
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Név</th>
-                        <th scope="col">Rendszám</th>
-                        <th scope="col">Tarifa</th>
+                        <th scope="col">SeriesName</th>
+                        <th scope="col">ReleaseDate</th>
+                        <th scope="col">ageLimit</th>
                         <th scope="col">
                             Műveletek
                             <!-- new -->
                             <button
                                 type="button"
-                                class="btn btn-online-success ms-1 btn-sm"
+                                class="btn btn-light ms-1 btn-sm"
                                 @click="onClickNew()">
                                 <i class="bi bi-plus-lg"></i>
                             </button>
@@ -22,28 +22,28 @@
                 </thead>
                 <tbody>
                     <tr
-                        v-for="(car, index) in cars"
+                        v-for="(series, index) in serieses"
                         :key="index"
                         class="static"
-                        @click="onClickRow(car.id)"
-                        :class="{ 'bg-primary': car.id == isValid }">
-                        <td>{{ car.name }}</td>
-                        <td>{{ car.licenseNumber }}</td>
-                        <td>{{ car.hourlyRate }}</td>
+                        @click="onClickRow(series.id)"
+                        :class="{ 'bg-primary': series.id == isValid }">
+                        <td>{{ series.name }}</td>
+                        <td>{{ series.releaseDate }}</td>
+                        <td>{{ series.ageLimit }}</td>
                         <td>
                             <!-- edit -->
                             <button
                                 type="button"
-                                class="btn btn-online-warning ms-1 btn-sm"
-                                @click="onClickEdit(car.id)">
+                                class="btn  btn-light ms-1 btn-sm"
+                                @click="onClickEdit(series.id)">
                                 <i class="bi bi-pencil"></i>
                             </button>
 
                             <!-- delete -->
                             <button
                                 type="button"
-                                class="btn btn-online-danger ms-1 btn-sm"
-                                @click="onClickDelete(car.id)">
+                                class="btn btn-light ms-1 btn-sm"
+                                @click="onClickDelete(series.id)">
                                 <i class="bi bi-archive"></i>
                             </button>
                         </td>
@@ -51,9 +51,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-4">
-            <h1>Fuvarok</h1>
-        </div>
+       
         <!-- Button trigger modal -->
         <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">
   Launch demo modal
@@ -61,7 +59,7 @@
 
         <!-- Modal -->
         <div
-            class="modal fade"
+            class="modal fade icons-color"
             id="modal"
             tabindex="-1"
             aria-labelledby="exampleModalLabel"
@@ -91,46 +89,43 @@
                                     type="text"
                                     class="form-control"
                                     id="name"
-                                    placeholder="Autó neve"
-                                    v-model="car.name"
+                                    placeholder="Series Name"
+                                    v-model="serieses.name"
                                     required />
                                 <div class="invalid-feedback">
-                                    Az autó neve kötelező!
+                                    Az sorozat neve kötelező!
                                 </div>
                             </div>
 
                             <!-- licenseNumber -->
                             <div class="mb-3 col-7">
-                                <label for="licenseNumber" class="form-label"
-                                    >Rendszám:
+                                <label for="releaseDate" class="form-label"
+                                    >releaseDate:
                                 </label>
                                 <input
-                                    type="text"
+                                    type="number"
                                     class="form-control"
-                                    id="licenseNumber"
-                                    pattern="^[A-Z]{3}-[0-9]{3}]$"
-                                    placeholder="XXX-999"
-                                    v-model="car.licenseNumber"
+                                    id="releaseDate"
+                                    placeholder="2000"
+                                    v-model="serieses.releaseDate"
                                     required />
                                 <div class="invalid-feedback">
-                                    Az autó rendszáma kötelező, vagy nem jó a
-                                    forma!
-                                </div>
+                                    Az sorozat kiadási dátuma nem megfelelő                                </div>
                             </div>
                             <!-- hourlyRate -->
                             <div class="mb-3 col-5">
-                                <label for="hourlyRate" class="form-label"
-                                    >Óradíj:
+                                <label for="ageLimit" class="form-label"
+                                    >ageLimit
                                 </label>
                                 <input
-                                    type="text"
+                                    type="number"
                                     class="form-control"
-                                    id="hourlyRate"
-                                    placeholder="Óradíj"
-                                    v-model="car.hourlyRate"
+                                    id="ageLimit"
+                                    placeholder="16"
+                                    v-model="serieses.ageLimit"
                                     required />
                                 <div class="invalid-feedback">
-                                    Az Óradíj kötelező!
+                                    A korhatár kötelező
                                 </div>
                             </div>
                         </form>
@@ -157,36 +152,36 @@
 </template>
 
 <script>
-class Car {
+class Series {
     constructor(
         id = null,
         name = null,
-        licenseNumber = null,
-        hourlyRate = null
+        releaseDate = null,
+        ageLimit = null
     ) {
         this.id = id;
         this.name = name;
-        this.licenseNumber = licenseNumber;
-        this.hourlyRate = hourlyRate;
+        this.releaseDate = releaseDate;
+        this.ageLimit = ageLimit;
     }
 }
 
 import * as bootstrap from "bootstrap";
 
 export default {
-    name: "Autopark",
+    name: "Series",
     data() {
         return {
-            cars: [],
+            serieses: [],
             state: "view",
             stateTitle: null,
-            car: new Car(),
+            series: new Series(),
             form: null,
             isValid: null,
         };
     },
     created() {
-        this.GetCars();
+        this.getSeries();
     },
     mounted() {
         this.modal = new bootstrap.Modal(document.getElementById("modal"), {
@@ -195,12 +190,12 @@ export default {
         this.form = document.querySelector(".needs-validation");
     },
     methods: {
-        GetCars() {
+        getSeries() {
             let headers = new Headers();
 
             headers.append("Content-Type", "application/json");
             headers.append("Authorization", "Bearer " + this.$root.$data.token);
-            const url = `${this.$loginServer}/api/cars`;
+            const url = `${this.$loginServer}/api/user/series`;
             fetch(url, {
                 method: "GET",
                 headers: headers,
@@ -208,19 +203,19 @@ export default {
                 .then((response) => response.json())
                 .then((data) => {
                     console.log("Success:", data.data);
-                    this.cars = data.data;
+                    this.serieses = data.data;
                 })
                 .catch((error) => {
                     console.error("Error:", error);
-                    this.cars = [];
+                    this.serieses = [];
                 });
         },
-        GetCarsById(id) {
+        getSeriesById(id) {
             let headers = new Headers();
 
             headers.append("Content-Type", "application/json");
             headers.append("Authorization", "Bearer " + this.$root.$data.token);
-            const url = `${this.$loginServer}/api/cars/${id}`;
+            const url = `${this.$loginServer}/api/user/series/${id}`;
             fetch(url, {
                 method: "GET",
                 headers: headers,
@@ -228,20 +223,20 @@ export default {
                 .then((response) => response.json())
                 .then((data) => {
                     console.log("Success:", data.data);
-                    this.car = data.data;
+                    this.serieses = data.data;
                 })
                 .catch((error) => {
                     console.error("Error:", error);
-                    this.car = [];
+                    this.serieses = [];
                 });
         },
-        putCar() {
+        updateSeries() {
             let headers = new Headers();
 
             headers.append("Content-Type", "application/json");
             headers.append("Authorization", "Bearer " + this.$root.$data.token);
-            const url = `${this.$loginServer}/api/cars`;
-            let data = this.car;
+            const url = `${this.$loginServer}/api/user/series`;
+            let data = this.series;
             fetch(url, {
                 method: "PUT",
                 headers: headers,
@@ -250,18 +245,17 @@ export default {
                 .then((response) => response.json())
                 .then((data) => {
                     console.log("Success:", data.data);
-                    this.GetCars();
+                    this.getSeries();
                 })
                 .catch((error) => {
                     console.error("Error:", error);
                 });
         },
-        deleteCar(id) {
+        deleteSeries(id) {
             let headers = new Headers();
-
             headers.append("Content-Type", "application/json");
             headers.append("Authorization", "Bearer " + this.$root.$data.token);
-            const url = `${this.$loginServer}/api/cars`;
+            const url = `${this.$loginServer}/api/user/series`;
             let data = {
                 id: id,
             };
@@ -273,19 +267,19 @@ export default {
                 .then((response) => response.json())
                 .then((data) => {
                     console.log("Success:", data.data);
-                    this.GetCars();
+                    this.getSeries();
                 })
                 .catch((error) => {
                     console.error("Error:", error);
                 });
         },
-        newCar() {
+        createSeries() {
             let headers = new Headers();
 
             headers.append("Content-Type", "application/json");
             headers.append("Authorization", "Bearer " + this.$root.$data.token);
-            const url = `${this.$loginServer}/api/cars`;
-            let data = this.car;
+            const url = `${this.$loginServer}/api/user/series`;
+            let data = this.serieses;
             delete data.id;
             fetch(url, {
                 method: "POST",
@@ -295,7 +289,7 @@ export default {
                 .then((response) => response.json())
                 .then((data) => {
                     console.log("Success:", data.data);
-                    this.GetCars();
+                    this.getSeries();
                 })
                 .catch((error) => {
                     console.error("Error:", error);
@@ -303,19 +297,19 @@ export default {
         },
         onClickNew() {
             this.state = "new";
-            this.stateTitle = "Új autó";
-            this.car = new Car();
+            this.stateTitle = "Új sorozat";
+            this.series = new Series();
             this.modal.show();
         },
         onClickEdit(id) {
             this.state = "edit";
             this.stateTitle = "Adatmódosítás";
             this.modal.show();
-            this.GetCarsById(id);
+            this.getSeriesById(id);
         },
         onClickDelete(id) {
             this.state = "delete";
-            this.deleteCar(id);
+            this.deleteSeries(id);
             this.state = "view";
         },
         onClickCancel() {
@@ -327,10 +321,10 @@ export default {
             if (this.form.checkValidity()) {
                 if (this.state == "edit") {
                     //put
-                    this.putCar();
+                    this.updateSeries();
                 } else if (this.state == "new") {
                     //post
-                    this.newCar();
+                    this.createSeries();
                 }
             } else {
                 return;
@@ -346,4 +340,11 @@ export default {
 </script>
 
 <style>
+div{color: white;}
+.table{
+    color: white;
+    }
+.icons-color{
+    color: white;
+}
 </style>

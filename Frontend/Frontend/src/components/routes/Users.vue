@@ -3,7 +3,7 @@
       <h1>Users</h1>
       <ul>
             <li v-for="(user, index) in users" :key="index">
-                {{user.email}}
+                {{user.userName}}
             </li>
         </ul>
   </div>
@@ -49,5 +49,7 @@ export default {
 </script>
 
 <style>
-
+    /* li{
+        list-style: none;
+    } */
 </style>

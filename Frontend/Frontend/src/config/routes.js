@@ -4,6 +4,8 @@ import Users from "../components/routes/Users.vue";
 import Login from "../components/routes/Login.vue";
 import Profile from "../components/routes/Profile.vue";
 import NotFound from "../components/routes/NotFound.vue";
+import Series from "../components/routes/Series.vue";
+
 
 
 //2. route - komponens hozzárendelés
@@ -35,6 +37,14 @@ const routes = [{
         name: "profile",
         path: "/profile",
         component: Profile,
+        meta: {
+            requiresAuth: false
+        }
+    },
+    {
+        name: "series",
+        path: "/series",
+        component: Series,
         meta: {
             requiresAuth: false
         }

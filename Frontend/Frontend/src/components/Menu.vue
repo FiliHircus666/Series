@@ -2,7 +2,7 @@
     <div class="my-border">
         <!-- 5. Cserélkük le a lineket: a -> router-link, href -> to, link -> route (útvonal) -->
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light nav-text-color">
             <div class="container-fluid">
                 <router-link class="navbar-brand" to="/">Navbar</router-link>
                 <button
@@ -51,8 +51,8 @@
                                 <li>
                                     <router-link
                                         class="dropdown-item"
-                                        to="/autopark"
-                                        >Autópark</router-link
+                                        to="/series"
+                                        >Sorozatok</router-link
                                     >
                                 </li>
                                 <li>
@@ -163,4 +163,7 @@ export default {
 </script>
 
 <style>
+li{
+    color: white;
+}
 </style>

@@ -1,13 +1,13 @@
 <template>
     <div class="my-border p-3">
-        <h1>Login</h1>
+        <h1>Register</h1>
         <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
+            <label for="text" class="form-label">userName</label>
             <input
-                type="email"
+                type="text"
                 class="form-control"
-                id="email"
-                v-model="loginData.email" />
+                id="userName"
+                v-model="loginData.userName" />
         </div>
         <div class="mb-3 row">
             <label for="password" class="form-label">Password</label>
@@ -18,6 +18,14 @@
                     id="password"
                     v-model="loginData.password" />
             </div>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input
+                type="email"
+                class="form-control"
+                id="email"
+                v-model="loginData.email" />
         </div>
         <button type="button" class="btn btn-primary" @click="onClickLogin()">
             Primary
@@ -46,8 +54,8 @@ export default {
     data() {
         return {
             loginData: {
-                email: "franyonorbi0@gmail.com",
-                password: "testTest",
+                userName: "user236",
+                password: "userPass1",
             },
             loginResponse: {
                 success: 0,
