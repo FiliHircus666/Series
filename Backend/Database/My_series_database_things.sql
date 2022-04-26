@@ -27,12 +27,13 @@ SELECT * FROM comment;
     INSERT INTO comment
       (userId,userComment,seriesId,ratePoint)
       VALUES
-      (10,'I not like this',1,5);
+      (10,'I not like this shit',1,5);
       
 
 DELETE FROM comment WHERE id = 4;
 
-SELECT * FROM comment;
+SELECT * FROM comment WHERE id = 7;
 DELETE FROM user;
+
 DELETE FROM series;
  
