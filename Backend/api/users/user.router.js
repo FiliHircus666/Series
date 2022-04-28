@@ -25,7 +25,7 @@ const {
 const router = require("express").Router();
 const {checkToken} = require("../../auth/token_validation");
 
-router.post("/users/", checkToken, createUser);
+router.post("/users/register", checkToken, createUser);
 router.get("/users/", checkToken, getUsers);
 router.get("/users/:id", checkToken, getUserByUserId);
 router.put("/users/", checkToken, updateUsers);
@@ -36,10 +36,10 @@ router.post("/users/login", login)
 router.post("/user/series", checkToken, createSeries);
 router.get("/user/series", checkToken, getSeries);
 router.get("/seriesabc", checkToken, getSeriesABC);
-router.get("/series/:id", checkToken, getSeriesById);
-router.get("/seriesr/:Release", checkToken, getSeriesRelease);
-router.put("/user/favorite/series/", checkToken, updateSeries);
-router.delete("/user/favorite/series/", checkToken, deleteSeries);
+router.get("/user/series/:id", checkToken, getSeriesById);
+router.get("/user/seriesr/:releaseDate", checkToken, getSeriesRelease);
+router.put("/user/series/", checkToken, updateSeries);
+router.delete("/user/series/:id", checkToken, deleteSeries);
 
 router.post("/user/series/favorite", checkToken, createFavorite);
 router.get("/user/series/favorite", checkToken, getFavorites);

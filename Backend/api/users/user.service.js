@@ -155,10 +155,10 @@ module.exports = {
             return callBack(null, results[0]);
         });
     },
-    getSeriesRelease: (Release, callBack) => {
+    getSeriesRelease: (releaseDate, callBack) => {
         //biztonságos megodás
-        const queryString = `select * from series where Release = ?`;
-        const params = [Release];
+        const queryString = `select * from series where releaseDate = ?`;
+        const params = [releaseDate];
         //öngyilkos megoldás
         // const queryString = `select * from series where Release `;
         // const params = [];

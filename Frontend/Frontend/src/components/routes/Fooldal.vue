@@ -1,6 +1,6 @@
 <template>
   <div class="my-border">
-		<h1>Főoldal</h1>
+		<h1>SeriesHub</h1>
   </div>
 </template>
 

@@ -7,7 +7,7 @@
                 type="text"
                 class="form-control"
                 id="userName"
-                v-model="loginData.userName" />
+                v-model="registerData.userName" />
         </div>
         <div class="mb-3 row">
             <label for="password" class="form-label">Password</label>
@@ -16,7 +16,7 @@
                     type="password"
                     class="form-control"
                     id="password"
-                    v-model="loginData.password" />
+                    v-model="registerData.password" />
             </div>
         </div>
         <div class="mb-3">
@@ -25,39 +25,40 @@
                 type="email"
                 class="form-control"
                 id="email"
-                v-model="loginData.email" />
+                v-model="registerData.email" />
         </div>
-        <button type="button" class="btn btn-primary" @click="onClickLogin()">
-            Primary
+        <button type="button" class="btn btn-primary" @click="onClickRegister()">
+            Register
         </button>
         <div class="alert alert-danger m-3" role="alert" v-if="noSuccess">
-            A bejelntkezés sikertelen: Rossz email vagy jelszó!
+            A Registráió sikertelen: Nem megfelelő email vagy username!
         </div>
         <div>
             <ul>
-                <li>{{ loginResponse.success }}</li>
-                <li>{{ loginResponse.message }}</li>
+                <li>{{ registerResponse.success }}</li>
+                <li>{{ registerResponse.message }}</li>
             </ul>
             <textarea
                 name=""
                 id=""
                 cols="85"
                 rows="5"
-                v-model="loginResponse.token"></textarea>
+                v-model="registerResponse.token"></textarea>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: "Login",
+    name: "register",
     data() {
         return {
-            loginData: {
-                userName: "user236",
-                password: "userPass1",
+            registerData: {
+                userName: "user237",
+                password: "userPass2",
+                Email: "user237@gmail.com",
             },
-            loginResponse: {
+            registerResponse: {
                 success: 0,
                 message: "",
                 token: null,
@@ -66,19 +67,19 @@ export default {
         };
     },
     methods: {
-        onClickLogin() {
-            const url = `${this.$loginServer}/api/users/login`;
+        onClickRegister() {
+            const url = `${this.$loginServer}/api/users/register`;
             let headers = new Headers();
             headers.append("Content-Type", "application/json");
             fetch(url, {
                 method: "POST", // or 'PUT'
                 headers: headers,
-                body: JSON.stringify(this.loginData),
+                body: JSON.stringify(this.registerData),
             })
                 .then((response) => response.json())
                 .then((data) => {
                     console.log("Success:", data);
-                    this.loginResponse = data;
+                    this.registerResponse = data;
                     this.$root.$data.token = data.token;
                     this.$root.$data.user = data.data;
                     if (data.success) {

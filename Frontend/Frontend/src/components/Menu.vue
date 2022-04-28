@@ -2,9 +2,9 @@
     <div class="my-border">
         <!-- 5. Cserélkük le a lineket: a -> router-link, href -> to, link -> route (útvonal) -->
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light nav-text-color">
+        <nav class="navbar navbar-expand-lg navbar-black bg-black nav-text-color">
             <div class="container-fluid">
-                <router-link class="navbar-brand" to="/">Navbar</router-link>
+                <router-link class="navbar-brand" to="/">SeriesHub</router-link>
                 <button
                     class="navbar-toggler"
                     type="button"
@@ -19,20 +19,12 @@
                     class="collapse navbar-collapse"
                     id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <router-link
-                                class="nav-link active"
-                                aria-current="page"
-                                to="/"
-                                >Főoldal</router-link
-                            >
-                        </li>
                          <li class="nav-item">
                              <router-link class="nav-link"
-                                to="/tarifa"
+                                to="/register"
                                 role="button"
                                 aria-expanded="false">
-                                Tarifa</router-link>
+                                Register</router-link>
                          </li>
                         <!--#region adatKarbantartás -->
                         <li class="nav-item dropdown" v-if="loggedIn()">
@@ -53,13 +45,6 @@
                                         class="dropdown-item"
                                         to="/series"
                                         >Sorozatok</router-link
-                                    >
-                                </li>
-                                <li>
-                                    <router-link
-                                        class="dropdown-item"
-                                        to="/fuvarok"
-                                        >Fuvarok</router-link
                                     >
                                 </li>
                                 <li><hr class="dropdown-divider" /></li>
@@ -84,7 +69,7 @@
                                 role="button"
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                {{ $root.$data.user.lastName }}
+                                {{ $root.$data.user.userName }}
                             </a>
                             <ul
                                 class="dropdown-menu"
@@ -101,6 +86,13 @@
                                         class="dropdown-item"
                                         to="/profile"
                                         >Profil</router-link
+                                    >
+                                </li>
+                                <li>
+                                    <router-link
+                                        class="dropdown-item"
+                                        to="/profile"
+                                        >Favorite</router-link
                                     >
                                 </li>
                             </ul>
@@ -166,4 +158,5 @@ export default {
 li{
     color: white;
 }
+
 </style>

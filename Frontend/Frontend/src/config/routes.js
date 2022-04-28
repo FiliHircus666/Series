@@ -5,6 +5,7 @@ import Login from "../components/routes/Login.vue";
 import Profile from "../components/routes/Profile.vue";
 import NotFound from "../components/routes/NotFound.vue";
 import Series from "../components/routes/Series.vue";
+import Register from "../components/routes/Register.vue";
 
 
 
@@ -21,6 +22,14 @@ const routes = [{
         name: "login",
         path: "/login/",
         component: Login,
+        meta: {
+            requiresAuth: false
+        }
+    },
+    {
+        name: "register",
+        path: "/register",
+        component: Register,
         meta: {
             requiresAuth: false
         }

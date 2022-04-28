@@ -221,8 +221,8 @@ module.exports = {
         });
     },
     getSeriesRelease: (req, res) => {
-        const hourlyRate = req.params.hourlyRate;
-        getSeriesRelease(Release, (err, results) => {
+        const releaseDate = req.params.releaseDate;
+        getSeriesRelease(releaseDate, (err, results) => {
             if (err) {
                 return res.status(500).json({
                     success: -1,

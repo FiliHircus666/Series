@@ -1,6 +1,6 @@
 <template>
-    <div class="row my-border">
-        <div class="col-8">
+    <div class=" my-border">
+        <div>
             <h1>Series</h1>
             <table class="table">
                 <thead>
@@ -236,7 +236,7 @@ export default {
             headers.append("Content-Type", "application/json");
             headers.append("Authorization", "Bearer " + this.$root.$data.token);
             const url = `${this.$loginServer}/api/user/series`;
-            let data = this.series;
+            let data = this.serieses;
             fetch(url, {
                 method: "PUT",
                 headers: headers,
@@ -253,11 +253,12 @@ export default {
         },
         deleteSeries(id) {
             let headers = new Headers();
+
             headers.append("Content-Type", "application/json");
             headers.append("Authorization", "Bearer " + this.$root.$data.token);
-            const url = `${this.$loginServer}/api/user/series`;
+            const url = `${this.$loginServer}/api/user/series/${id}`;
             let data = {
-                id: id,
+                id: id
             };
             fetch(url, {
                 method: "DELETE",
@@ -298,7 +299,7 @@ export default {
         onClickNew() {
             this.state = "new";
             this.stateTitle = "Új sorozat";
-            this.series = new Series();
+            this.serieses = new Series();
             this.modal.show();
         },
         onClickEdit(id) {
@@ -346,5 +347,14 @@ div{color: white;}
     }
 .icons-color{
     color: white;
+}
+tbody{
+    max-width: 50%;
+}
+.modal-header{
+    color: black;
+}
+label{
+    color: black;
 }
 </style>

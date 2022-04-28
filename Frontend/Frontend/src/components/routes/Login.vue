@@ -2,16 +2,30 @@
     <div class="my-border p-3">
         <h1>Login</h1>
         <div class="mb-3">
-            <label for="text" class="form-label">userName</label>
-            <input
-                type="test"
-                class="form-control"
-                id="userName"
-                v-model="loginData.userName" />
+            <p>
+            If you won't have profile register <a href="#/register">here</a>
+
+            </p>
+            <label for="text" class="form-label"> <p>
+                 userName
+                </p></label>
+            <div class="col-sm-2">
+                <input
+                    type="test"
+                    class="form-control"
+                    id="userName"
+                    v-model="loginData.userName" />
+            </div>
         </div>
-        <div class="mb-3 row">
-            <label for="password" class="form-label">Password</label>
-            <div class="col-sm-10">
+        <div class="mb-4 row">
+            <label for="password" class="form-label">
+                <p>
+
+                Password
+                </p>
+                
+                </label>
+            <div class="col-sm-2">
                 <input
                     type="password"
                     class="form-control"
@@ -20,12 +34,15 @@
             </div>
         </div>
         <button type="button" class="btn btn-primary" @click="onClickLogin()">
-            Primary
+            Login
         </button>
+        <!-- <button type="button" class="btn btn-primary"  @click="onClickRegistration()">
+           <a  href="#/register">Register </a> 
+        </button> -->
         <div class="alert alert-danger m-3" role="alert" v-if="noSuccess">
-            A bejelntkezés sikertelen: Rossz email vagy jelszó!
+            A bejelntkezés sikertelen: Rossz username vagy jelszó!
         </div>
-        <div>
+        <!-- <div>
             <ul>
             </ul>
             <textarea
@@ -34,7 +51,7 @@
                 cols="85"
                 rows="5"
                 v-model="loginResponse.token"></textarea>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -72,12 +89,40 @@ export default {
                     this.$root.$data.token = data.token;
                     this.$root.$data.user = data.data;
                     if (data.success) {
-                        this.$router.push({path: "/"})
+                        this.$router.push({ path: "/" });
                     } else {
                         this.noSuccess = true;
-                        setTimeout(()=>{
+                        setTimeout(() => {
                             this.noSuccess = false;
-                        },2000)
+                        }, 2000);
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                });
+        },
+        onClickRegistration() {
+            const url = `${this.$loginServer}/api/users/register`;
+            let headers = new Headers();
+            headers.append("Content-Type", "application/json");
+            fetch(url, {
+                method: "POT", // or 'PUT'
+                headers: headers,
+                body: JSON.stringify(this.loginData),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log("Success:", data);
+                    this.loginResponse = data;
+                    this.$root.$data.token = data.token;
+                    this.$root.$data.user = data.data;
+                    if (data.success) {
+                        this.$router.push({ path: "/login" });
+                    } else {
+                        this.noSuccess = true;
+                        setTimeout(() => {
+                            this.noSuccess = false;
+                        }, 2000);
                     }
                 })
                 .catch((error) => {
@@ -89,4 +134,11 @@ export default {
 </script>
 
 <style>
+a {
+    color: whitee;
+    text-decoration: none;
+}
+p{
+    color: white;
+}
 </style>
