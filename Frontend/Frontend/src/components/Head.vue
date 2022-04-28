@@ -1,6 +1,14 @@
 <template>
-  <div class="my-border header-back">
-      <h1>Head</h1>
+  <div class="my-border header-backg">
+      <h1> 
+        
+        <a href="#/">
+
+
+        <span>Series</span><span class="Hub-color">Hub</span>
+        </a>
+        
+        </h1>
   </div>
 </template>
 
@@ -11,16 +19,25 @@ export default {
 </script>
   
 <style>
-/* .header-back{
-  background: url(https://i.ytimg.com/vi/NdGd1fN-frA/maxresdefault.jpg) no-repeat;
-  max-width: 100%;
-  padding-bottom:500px ;
-  
+.Hub-color{
+  border: 1px ;
+  border-radius: 20%;
+  background: orange ;
+  color: black;
+  font-style: uppercase;
 }
-.header-back h1{
-  text-align: center;
-  position: relative;
-  top: 250px;
-  left: 200px;
-} */
+.header-backg{
+  padding-top: 20px;
+  /* background: url(https://c.tenor.com/xfsFj7A6lJMAAAAd/galaxy.gif); */
+
+}
+h1{
+  text-align:  center;
+}
+h1 :hover{
+  color: white;
+}
+a :hover{
+  color: white;
+}
 </style>

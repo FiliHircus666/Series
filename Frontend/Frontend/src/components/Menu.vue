@@ -2,7 +2,7 @@
     <div class="my-border">
         <!-- 5. Cserélkük le a lineket: a -> router-link, href -> to, link -> route (útvonal) -->
 
-        <nav class="navbar navbar-expand-lg navbar-black bg-black nav-text-color">
+        <nav class="navbar navbar-expand-lg  ">
             <div class="container-fluid">
                 <router-link class="navbar-brand" to="/">SeriesHub</router-link>
                 <button
@@ -156,7 +156,18 @@ export default {
 
 <style>
 li{
-    color: white;
+    color: black;
 }
-
+ .navbar-nav{
+    display: block;
+    float: none;
+    /* vertical-align: top; */
+    margin:  0 auto;
+    text-align: center;
+}
+.navbar-nav > li{
+    display: inline-block;
+    /* text-align: center; */
+    float: none;
+}
 </style>
