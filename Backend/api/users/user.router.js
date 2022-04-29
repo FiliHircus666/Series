@@ -42,7 +42,7 @@ router.put("/user/series/", checkToken, updateSeries);
 router.delete("/user/series/:id", checkToken, deleteSeries);
 
 router.post("/user/favorite/series", checkToken, createFavorite);
-router.get("/api/user/favorite/series/:id", checkToken, getFavorites);
+router.get("/user/favorite/series", checkToken, getFavorites);
 router.get("/user/series/favorites/:id", checkToken, getFavoriteById);
 router.put("/user/series/favorite", checkToken, updateFavorite);
 router.delete("/user/series/favorite", checkToken, deleteFavorite);

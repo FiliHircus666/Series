@@ -314,7 +314,7 @@ module.exports = {
         });
     },
     getFavorites: (req, res) => {
-        getFavorites(id,(err, results) => {
+        getFavorites((err, results) => {
             if (err) {
                 return res.status(500).json({
                     success: -1,

@@ -107,11 +107,12 @@ module.exports = {
             return callBack(null, results);
         });
     },
-    getFavorites: (id,callBack) => {
-        const queryString = `select distinct s.name from favorite f
-                                INNER JOIN series s on s.id = f.seriesId
-                                WHERE f.seriesId = ?`;
-        const params = [id];
+    getFavorites: callBack => {
+        const queryString = `select * from favorite `;
+        const params = [];
+        // select distinct s.name from favorite f
+        // INNER JOIN series s on s.id = f.seriesId
+        // WHERE f.seriesId = ?
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
                 return callBack(error);

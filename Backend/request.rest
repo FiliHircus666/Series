@@ -116,7 +116,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiO
 
 
 ### Egy favorite
-get http://localhost:3000/api/user/favorite/series/2
+get http://localhost:3000/api/user/favorite/series
 Authorization: Bearer
 
 # ### Egy autó tripjei trip
