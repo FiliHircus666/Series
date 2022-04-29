@@ -3,6 +3,18 @@ SELECT * FROM series;
 SELECT * FROM favorite;
 SELECT * FROM comment;
 
+
+
+# api/user
+SELECT * FROM user;
+# api/user/series
+SELECT * FROM series;
+# api/user/series/favorite
+SELECT * FROM favorite
+# api/user/series/comment
+SELECT * FROM comment; 
+ 
+# crateUser
   INSERT INTO user 
     (userName,password,Email,permission)
     VALUES
@@ -10,30 +22,34 @@ SELECT * FROM comment;
     ('User#234','UserPassword#234','User#234@gmail.com',2),
     ('User#235','UserPassword#235','User#235@gmail.com',2);
     
-
+# createSeries
   INSERT INTO series
     (name,releaseDate,ageLimit)
     VALUES
     ('The Last Kingdom','2015',16),
     ('Vikings','2013',16),
     ('Game of Thrones','2011',18);
-
+# createFavorite
   INSERT INTO favorite
-    (userId,seriesId,Watched)
+    (userId,seriesId,watched)
     VALUES
-    (2,3,'watched'),
-    (3,1,'in progress');
-
+    (10,51,'watched'),
+    (12,53,'in progress');
+# createComment
     INSERT INTO comment
       (userId,userComment,seriesId,ratePoint)
       VALUES
       (10,'I not like this shit',1,5);
       
-
+# deleteComment
 DELETE FROM comment WHERE id = 4;
-
+# getCommentById
 SELECT * FROM comment WHERE id = 7;
-DELETE FROM user;
-
+# deleteUser
+DELETE FROM user where id = 2;
+# deleteSeries 
 DELETE FROM series;
- 
+# getFavorite 
+SELECT DISTINCT s.name FROM favorite f
+  INNER JOIN series s on s.id = f.seriesId
+  WHERE f.seriesId = 51;

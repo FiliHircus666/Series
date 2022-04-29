@@ -33,7 +33,7 @@ module.exports = {
     },
     createFavorite: (data, callBack) => {
         let queryString = `INSERT INTO favorite
-                            (userId,seriesId,Watched)
+                            (userId,seriesId,watched)
                             VALUES
                             (?, ?, ?)
         `
@@ -107,9 +107,11 @@ module.exports = {
             return callBack(null, results);
         });
     },
-    getFavorites: callBack => {
-        const queryString = `select  * from favorite`;
-        const params = [];
+    getFavorites: (id,callBack) => {
+        const queryString = `select distinct s.name from favorite f
+                                INNER JOIN series s on s.id = f.seriesId
+                                WHERE f.seriesId = ?`;
+        const params = [id];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
                 return callBack(error);

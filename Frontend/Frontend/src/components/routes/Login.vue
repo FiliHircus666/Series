@@ -3,7 +3,7 @@
         <h1>Login</h1>
         <div class="mb-3">
             <p>
-            If you won't have profile register <a href="#/register">here</a>
+            If you won't have profile register <a href="#/register" class="here-color">here</a>
 
             </p>
             <label for="text" class="form-label"> <p>
@@ -139,6 +139,12 @@ a {
     text-decoration: none;
 }
 p{
+    color: white;
+}
+.here-color{
+    color: blue;
+}
+li{
     color: white;
 }
 </style>

@@ -41,9 +41,9 @@ router.get("/user/seriesr/:releaseDate", checkToken, getSeriesRelease);
 router.put("/user/series/", checkToken, updateSeries);
 router.delete("/user/series/:id", checkToken, deleteSeries);
 
-router.post("/user/series/favorite", checkToken, createFavorite);
-router.get("/user/series/favorite", checkToken, getFavorites);
-router.get("/favorites/:id", checkToken, getFavoriteById);
+router.post("/user/favorite/series", checkToken, createFavorite);
+router.get("/api/user/favorite/series/:id", checkToken, getFavorites);
+router.get("/user/series/favorites/:id", checkToken, getFavoriteById);
 router.put("/user/series/favorite", checkToken, updateFavorite);
 router.delete("/user/series/favorite", checkToken, deleteFavorite);
 

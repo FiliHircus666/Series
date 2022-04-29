@@ -116,7 +116,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiO
 
 
 ### Egy favorite
-get http://localhost:3000/api/user/series/favorite
+get http://localhost:3000/api/user/favorite/series/2
 Authorization: Bearer
 
 # ### Egy autó tripjei trip
@@ -124,14 +124,14 @@ Authorization: Bearer
 # Authorization: Bearer
 
 ### favorite hozzáadása
-post http://localhost:3000/api/user/series/favorite
+post http://localhost:3000/api/user/favorite/series
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTQ0NjI3MiwiZXhwIjoxNjQ1NDQ5ODcyfQ.mt6Ga598tVLQ3QXty4BF-amaU2Jbaww4U5z5AaUXvsg
 
 { 
     "userId": "10", 
-    "seriesId": "12", 
-    "Watched": "watched"
+    "seriesId": "51", 
+    "watched": "watched"
  }
 
 ### favorite módosítása
@@ -141,7 +141,7 @@ Content-Type: application/json
 {
     "userId": "12",
     "seriesId": "13",
-    "Watched": "progress",
+    "watched": "progress",
     "id": 7 
     
 }

@@ -91,7 +91,7 @@
                                 <li>
                                     <router-link
                                         class="dropdown-item"
-                                        to="/profile"
+                                        to="/favorite"
                                         >Favorite</router-link
                                     >
                                 </li>

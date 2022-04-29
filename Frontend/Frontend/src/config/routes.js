@@ -6,6 +6,7 @@ import Profile from "../components/routes/Profile.vue";
 import NotFound from "../components/routes/NotFound.vue";
 import Series from "../components/routes/Series.vue";
 import Register from "../components/routes/Register.vue";
+import Favorite from "../components/routes/Favorite.vue";
 
 
 
@@ -54,6 +55,14 @@ const routes = [{
         name: "series",
         path: "/series",
         component: Series,
+        meta: {
+            requiresAuth: false
+        }
+    },
+    {
+        name: "favorite",
+        path: "/favorite",
+        component: Favorite,
         meta: {
             requiresAuth: false
         }
