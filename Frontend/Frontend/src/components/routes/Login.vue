@@ -1,7 +1,7 @@
 <template>
     <div class="my-border p-3">
         <h1>Login</h1>
-        <div class="mb-3">
+        <div class="mb-3 login-center">
             <p>
             If you won't have profile register <a href="#/register" class="here-color">here</a>
 
@@ -9,7 +9,7 @@
             <label for="text" class="form-label"> <p>
                  userName
                 </p></label>
-            <div class="col-sm-2">
+            <div class="col-sm-6">
                 <input
                     type="test"
                     class="form-control"
@@ -17,7 +17,7 @@
                     v-model="loginData.userName" />
             </div>
         </div>
-        <div class="mb-4 row">
+        <div class="mb-4  login-center">
             <label for="password" class="form-label">
                 <p>
 
@@ -25,7 +25,7 @@
                 </p>
                 
                 </label>
-            <div class="col-sm-2">
+            <div class="col-sm-6">
                 <input
                     type="password"
                     class="form-control"
@@ -33,7 +33,7 @@
                     v-model="loginData.password" />
             </div>
         </div>
-        <button type="button" class="btn btn-primary" @click="onClickLogin()">
+        <button type="button" class="btn btn-primary login-center" @click="onClickLogin()">
             Login
         </button>
         <!-- <button type="button" class="btn btn-primary"  @click="onClickRegistration()">
@@ -146,5 +146,8 @@ p{
 }
 li{
     color: white;
+}
+.login-center{
+    margin: 0 32%;
 }
 </style>

@@ -1,17 +1,20 @@
 <template>
     <div class="my-border p-3">
         <h1>Register</h1>
-        <div class="mb-3">
+        <div class="mb-3 register-center">
             <label for="text" class="form-label">userName</label>
+            <div class="col-sm-6">
+
             <input
                 type="text"
                 class="form-control"
                 id="userName"
                 v-model="registerData.userName" />
         </div>
-        <div class="mb-3 row">
+            </div>
+        <div class="mb-3  register-center">
             <label for="password" class="form-label">Password</label>
-            <div class="col-sm-10">
+            <div class="col-sm-6">
                 <input
                     type="password"
                     class="form-control"
@@ -19,18 +22,21 @@
                     v-model="registerData.password" />
             </div>
         </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
+        <div class="mb-3 register-center">
+            <label for="Email" class="form-label">Email address</label>
+            <div class="col-sm-6">
+
             <input
                 type="email"
                 class="form-control"
-                id="email"
-                v-model="registerData.email" />
+                id="Email"
+                v-model="registerData.Email" />
+            </div>
         </div>
-        <button type="button" class="btn btn-primary" @click="onClickRegister()">
+        <button type="button" class="btn btn-primary register-bottom-center " @click="onClickRegister()">
             Register
         </button>
-        <div class="alert alert-danger m-3" role="alert" v-if="noSuccess">
+        <!-- <div class="alert alert-danger m-3" role="alert" v-if="noSuccess">
             A Registráió sikertelen: Nem megfelelő email vagy username!
         </div>
         <div>
@@ -44,7 +50,7 @@
                 cols="85"
                 rows="5"
                 v-model="registerResponse.token"></textarea>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -100,4 +106,12 @@ export default {
 </script>
 
 <style>
+.register-center{
+
+    margin: 0 33%;
+
+}
+.register-bottom-center{
+    margin: 0 38%;
+}
 </style>
