@@ -35,7 +35,8 @@
                             <button
                                 type="button"
                                 class="btn  btn-light ms-1 btn-sm"
-                                @click="onClickEdit(series.id)">
+                                @click="onClickEdit(series.id)"
+                                v-if="loggedIn() == 1" >
                                 <i class="bi bi-pencil"></i>
                             </button>
 
@@ -43,8 +44,17 @@
                             <button
                                 type="button"
                                 class="btn btn-light ms-1 btn-sm"
-                                @click="onClickDelete(series.id)">
+                                @click="onClickDelete(series.id)"
+                                v-if="loggedIn() == 1">
                                 <i class="bi bi-archive"></i>
+                            </button>
+                            <!-- Favorite -->
+                             <button
+                                type="button"
+                                class="btn btn-light ms-1 btn-sm"
+                                @click="onClickFavorite(series.id)"
+                                v-if="loggedIn() == 0">
+                                <i class="bi bi-star"></i>
                             </button>
                         </td>
                     </tr>
@@ -190,6 +200,10 @@ export default {
         this.form = document.querySelector(".needs-validation");
     },
     methods: {
+                loggedIn() {
+            return Boolean(this.$root.$data.user.permission) 
+        },
+
         getSeries() {
             let headers = new Headers();
 

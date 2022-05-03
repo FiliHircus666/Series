@@ -19,12 +19,13 @@ Vue.use(VueResource);
 Vue.use(VueRouter);
 
 class User {
-    constructor(firstName = null, lastName = null, gender = null, email = null, number = null) {
+    constructor(firstName = null, lastName = null, gender = null, email = null, permission = null) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.email = email;
-        this.number = number;
+       
+        this.permission = permission;
     }
 }
 
@@ -56,14 +57,14 @@ router.beforeEach((to, from, next) => {
     //A to tartalmazza, hogy mit írtunk be
     //to.mached gyűjtemény azon rekordok, amik a routes tömb-ben megfellenek az útvonalnak.
  
-    let loggedIn = x.$data.token
+    let permission = x.$data.user.permission 
     //A megtalált útvonalhoz tratozó route objektumban meta.requiresAuth true-e
     //Azaz bejelnekezéshez kötött menüpont-e
     console.log("beírtam:",to);
     if (to.matched.some(record => record.meta.requiresAuth)) {
         // this route requires auth, check if logged in
         // if not, redirect to login page.
-        if (!loggedIn) {
+        if (permission != null) {
             next({
                 path: '/login'
             })

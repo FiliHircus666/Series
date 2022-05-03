@@ -3,7 +3,7 @@
 		<h1>Profile</h1>
     <p>Felhasználó név: {{$root.$data.user.userName}}</p>
         <p>Email: {{$root.$data.user.Email}}</p>
-        <p>Permission:{{$root.$data.user.permission}}</p>
+        <!-- <p>Permission:{{$root.$data.user.permission}}</p> -->
        
   </div>
 </template>
@@ -15,5 +15,7 @@ export default {
 </script>
 
 <style>
-
+  footer{
+    display: block;
+  }
 </style>

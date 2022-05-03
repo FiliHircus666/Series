@@ -27,7 +27,7 @@
                                 Register</router-link>
                          </li>
                         <!--#region adatKarbantartás -->
-                        <li class="nav-item dropdown" v-if="loggedIn()">
+                        <li class="nav-item dropdown" v-if="loggedIn() == 1 || loggedIn() == 2" >
                             <a
                                 class="nav-link dropdown-toggle"
                                 href="#"
@@ -48,10 +48,11 @@
                                     >
                                 </li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li>
+                                <li v-if="loggedIn() == 1 ">
                                     <router-link
                                         class="dropdown-item"
                                         to="/users"
+                                        
                                         >Users</router-link
                                     >
                                 </li>
@@ -61,7 +62,7 @@
                         <!--#endregion adatKarbantartás -->
 
                         <!--#region login -->
-                        <li class="nav-item dropdown" v-if="loggedIn()">
+                        <li class="nav-item dropdown" v-if="loggedIn() == 1 || loggedIn() == 2">
                             <a
                                 class="nav-link dropdown-toggle"
                                 href="#"
@@ -107,6 +108,7 @@
                             >
                         </li>
                     </ul>
+                    
                     <form class="d-flex">
                         <input
                             class="form-control me-2"
@@ -126,17 +128,15 @@
 <script>
 class User {
     constructor(
-        firstName = null,
-        lastName = null,
-        gender = null,
-        email = null,
-        number = null
+        userName = null,
+        password = null,
+        Email = null,
+        permission = null
     ) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.email = email;
-        this.number = number;
+        this.userName = userName;
+        this.password = password;
+        this.Email = Email;
+        this.permission = permission;
     }
 }
 
@@ -144,11 +144,12 @@ export default {
     name: "Menu",
     methods: {
         loggedIn() {
-            return Boolean(this.$root.$data.token);
+            return Boolean(this.$root.$data.user.permission,this.$root.$data.user.token) 
         },
         onClicklogout() {
             this.$root.$data.token = null;
             this.$root.$data.user = new User();
+           
         },
     },
 };

@@ -68,6 +68,7 @@ export default {
                 success: 0,
                 message: "",
                 token: null,
+                
             },
             noSuccess: false,
         };

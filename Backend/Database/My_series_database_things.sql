@@ -18,9 +18,8 @@ SELECT * FROM comment;
   INSERT INTO user 
     (userName,password,Email,permission)
     VALUES
-    ('Admin','AdminPassword','Admin@gmail.com',1),
-    ('User#234','UserPassword#234','User#234@gmail.com',2),
-    ('User#235','UserPassword#235','User#235@gmail.com',2);
+    ('Admin','AdminPassword','Admin@gmail.com',1);
+  
     
 # createSeries
   INSERT INTO series
@@ -53,3 +52,4 @@ DELETE FROM series;
 SELECT DISTINCT s.name FROM favorite f
   INNER JOIN series s on s.id = f.seriesId
   WHERE f.seriesId = 51;
+DELETE FROM user;

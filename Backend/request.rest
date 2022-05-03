@@ -22,10 +22,10 @@ post http://localhost:3000/api/users/register
 Content-Type: application/json
 
 {
-    "userName": "user235",
-    "password": "userPass",
-    "Email": "user235@gmail.com",
-    "permission": 2
+    "userName": "Admin",
+    "password": "AdminPass",
+    "Email": "Amdin@gmail.com",
+    "permission": 1
 }
 
 
@@ -37,11 +37,11 @@ put http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-    "userName": "user235",
-    "password": "userPass235",
-    "Email": "user235@gmail.com",
+    "userName": "TyapTyap",
+    "password": "Tyap",
+    "Email": "TyapTyap@gmail.com",
     "number": 2,
-    "id": 13
+    "id": 20
 }
 
 ### Delete user
@@ -49,7 +49,7 @@ delete http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-    "id": 11
+    "id": 18
 }
 
 

@@ -17,6 +17,7 @@ const routes = [{
         component: Users,
         meta: {
             requiresAuth: false
+            
         }
     },
     {
