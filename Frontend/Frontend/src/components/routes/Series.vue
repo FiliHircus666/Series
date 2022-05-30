@@ -1,71 +1,74 @@
 <template>
     <div class=" my-border">
-        <div>
-            <h1>Series</h1>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">SeriesName</th>
-                        <th scope="col">ReleaseDate</th>
-                        <th scope="col">ageLimit</th>
-                        <th scope="col">
-                            Műveletek
-                            <!-- new -->
-                            <button
+      <button
                                 type="button"
                                 class="btn btn-light ms-1 btn-sm"
                                 @click="onClickNew()">
-                                <i class="bi bi-plus-lg"></i>
-                            </button>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr
-                        v-for="(series, index) in serieses"
-                        :key="index"
-                        class="static"
-                        @click="onClickRow(series.id)"
-                        :class="{ 'bg-primary': series.id == isValid }">
-                        <td>{{ series.name }}</td>
-                        <td>{{ series.releaseDate }}</td>
-                        <td>{{ series.ageLimit }}</td>
-                        <td>
-                            <!-- edit -->
-                            <button
+                                <i class="bi bi-plus-lg"></i> 
+                             </button>
+        <div  class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4 p-4">
+
+            <div class="col"  v-for="(series, index) in serieses"
+                        :key="index">
+                <div class="card h-100">
+                <div class="card-body card-txt-color " >
+                <img src="https://flxt.tmsimg.com/assets/p12079367_b_v8_an.jpg" alt="">
+                
+                    <div class="accordion-item" id="accordionExample">
+                     <div class="accordion-header accordion">
+                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                     <h4 class="card-title">{{ series.name }}</h4>
+                        </button>
+                        </div>
+                        </div>
+                    <!-- <p v-html="embed" class="card-text"><a :href="gamelink.link">
+                            {{ gamelink.link }} </a></p> -->
+                    <p class="card-title">{{ series.releaseDate }}</p>
+                            <p class="card-text"> {{ series.ageLimit }}</p>
+                 <div class="row">
+                                <button
                                 type="button"
-                                class="btn  btn-light ms-1 btn-sm"
+                                class="btn  btn-light ms-1 btn-sm col-lg-4 col-sm-12"
                                 @click="onClickEdit(series.id)"
-                                v-if="loggedIn() == 1" >
+                                v-if="loggedIn()" >
                                 <i class="bi bi-pencil"></i>
                             </button>
 
                             <!-- delete -->
                             <button
                                 type="button"
-                                class="btn btn-light ms-1 btn-sm"
+                                class="btn btn-light ms-1 btn-sm col-lg-4 col-sm-12" 
                                 @click="onClickDelete(series.id)"
-                                v-if="loggedIn() == 1">
+                                v-if="loggedIn()">
                                 <i class="bi bi-archive"></i>
                             </button>
                             <!-- Favorite -->
                              <button
                                 type="button"
-                                class="btn btn-light ms-1 btn-sm"
+                                class="btn btn-light ms-1 btn-sm col-lg-3 col-sm-12"
                                 @click="onClickFavorite(series.id)"
-                                v-if="loggedIn() == 0">
+                                v-if="loggedIn() == 1 ">
                                 <i class="bi bi-star"></i>
                             </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                            </div>
+                 </div>
+                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/WxPApTGWwas" title="YouTube video player" frameborder="2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+
+          </div>
         </div>
-       
+    </div>
         <!-- Button trigger modal -->
         <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">
   Launch demo modal
 </button> -->
+
+  
+
 
         <!-- Modal -->
         <div
@@ -331,6 +334,12 @@ export default {
             this.state = "view";
             this.modal.hide();
         },
+        //  onClickFavorite(id){
+        //     this.state = "new";
+        //     this.state = "Favorite-hoz adás";
+        //     this.favorite = new Favorite();
+        //     this.state = "view";
+        // },
         onClickSaveData() {
             this.form.classList.add("was-validated");
             if (this.form.checkValidity()) {
@@ -370,5 +379,11 @@ tbody{
 }
 label{
     color: black;
+}
+h4,p{
+    color: black;
+}
+img{
+    max-width: 100%;
 }
 </style>

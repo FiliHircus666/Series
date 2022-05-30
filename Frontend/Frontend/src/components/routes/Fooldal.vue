@@ -1,15 +1,19 @@
-<template>
-  <div class="my-border">
+ <template>
+<div class="my-border">
 	<h2> 
       <a href="#/"> <span>Series</span><span class="Hub-color">Hub</span>
       </a>
       </h2>
-  </div>
+      
+</div>
+
 </template>
 
 <script>
+
 export default {
-    name: "Fooldal"
+  name: "Fooldal"
+
 }
 </script>
 
