@@ -20,7 +20,11 @@ const {
     createComment,
     getComments,
     updateComment,
-    deleteComment
+    deleteComment,
+    getSeriesLink,
+    getSeriesLinkById,
+    deleteSeriesLink,
+    updateSeriesLink
 } = require("./user.service.js");
 
 const {
@@ -151,6 +155,30 @@ module.exports = {
     getUserByUserId: (req, res) => {
         const id = req.params.id;
         getUserByUserId(id, (err, results) => {
+            if (err) {
+                return res.status(500).json({
+                    success: -1,
+                    message: "Server error",
+                    data: {}
+                });
+            }
+            if (!results) {
+                return res.status(200).json({
+                    success: 0,
+                    message: "Record not found!",
+                    data: {}
+                })
+            }
+            return res.status(200).json({
+                success: 1,
+                message: "Record found!",
+                data: results
+            });
+        });
+    },
+    getSeriesLinkById: (req, res) => {
+        const id = req.params.id;
+        getSeriesLinkById(id, (err, results) => {
             if (err) {
                 return res.status(500).json({
                     success: -1,
@@ -385,6 +413,32 @@ module.exports = {
             });
         });
     },
+    updateSeriesLink: (req, res) => {
+        const body = req.body;
+        const salt = genSaltSync(10);
+        body.password = hashSync(body.password, salt);
+        updateSeriesLink(body, (err, results) => {
+            if (err) {
+                return res.status(500).json({
+                    success: -1,
+                    message: "Server error",
+                    data: {}
+                });
+            }
+            if (results.affectedRows == 0) {
+                return res.status(200).json({
+                    success: 0,
+                    message: "Not updated",
+                    data: results
+                });
+            }
+            return res.status(200).json({
+                success: 1,
+                message: "Updated successfully",
+                data: results
+            });
+        });
+    },
     updateSeries: (req, res) => {
         const body = req.body;
         updateSeries(body, (err, results) => {
@@ -483,6 +537,32 @@ module.exports = {
             });
         });
     },
+    deleteSeriesLink: (req, res) => {
+        const data = req.body;
+        deleteSeriesLink(data, (err, results) => {
+            // console.log(results);
+            if (err) {
+                res.status(500).json({
+                    deletedRows: 0,
+                    success: -1,
+                    message: "Server error"
+                })
+                return;
+            }
+            if (results.affectedRows == 0) {
+                return res.status(200).json({
+                    success: 0,
+                    message: "Record Not Found",
+                    data: results
+                });
+            }
+            return res.status(200).json({
+                success: 1,
+                message: "Deleted successfully",
+                data: results
+            });
+        });
+    },
     deleteSeries: (req, res) => {
         const data = req.body;
         deleteSeries(data, (err, results) => {
@@ -557,6 +637,29 @@ module.exports = {
             return res.status(200).json({
                 success: 1,
                 message: "Deleted successfully",
+                data: results
+            });
+        });
+    },
+    getSeriesLink: (req, res) => {
+        getSeriesLink((err, results) => {
+            if (err) {
+                return res.status(500).json({
+                    success: -1,
+                    message: "Server error",
+                    data: []
+                });
+            }
+            if (results.length == 0) {
+                return res.status(200).json({
+                    success: 0,
+                    message: "No records",
+                    data: results
+                });
+            }
+            return res.status(200).json({
+                success: 1,
+                message: "Get successfully",
                 data: results
             });
         });

@@ -53,3 +53,5 @@ SELECT DISTINCT s.name FROM favorite f
   INNER JOIN series s on s.id = f.seriesId
   WHERE f.seriesId = 51;
 DELETE FROM user;
+
+INSERT INTO 

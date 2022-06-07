@@ -4,7 +4,9 @@
 
         <nav class="navbar navbar-expand-lg navbar-dark text-white" >
             <div class="container-fluid">
-                <router-link class="navbar-brand" to="/">SeriesHub</router-link>
+                <router-link class="navbar-brand" to="/">
+                <span class="serieshub-size">Series</span><span class="Hub-color">Hub</span>
+                </router-link>
                 <button
                     class="navbar-toggler"
                     type="button"
@@ -45,6 +47,13 @@
                                         class="dropdown-item"
                                         to="/series"
                                         >Sorozatok</router-link
+                                    >
+                                </li>
+                                <li>
+                                     <router-link
+                                        class="dropdown-item"
+                                        to="/serieslink"
+                                        >Sorozat linkek</router-link
                                     >
                                 </li>
                                 <li><hr class="dropdown-divider" /></li>
@@ -174,5 +183,23 @@ li{
     float: none;
     
 }
+.Hub-color{
+  border: 1px ;
+  border-radius: 20%;
+  background: orange ;
+  color: black;
+  font-style: uppercase;
 
+}
+.seriesHub-back{
+  background-color: black ;
+
+    max-width: 30%;
+    margin: 0 45%;
+    border-radius: 15%;
+
+}
+.serieshub-size{
+    font-size: 25px;
+}
 </style>

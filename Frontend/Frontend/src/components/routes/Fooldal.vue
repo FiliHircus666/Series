@@ -4,16 +4,16 @@
       <a href="#/"> <span>Series</span><span class="Hub-color">Hub</span>
       </a>
       </h2>
-      
+
 </div>
 
 </template>
 
 <script>
-
 export default {
-  name: "Fooldal"
-
+  name: "Fooldal",
+ 
+  
 }
 </script>
 

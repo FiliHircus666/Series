@@ -7,6 +7,7 @@ import NotFound from "../components/routes/NotFound.vue";
 import Series from "../components/routes/Series.vue";
 import Register from "../components/routes/Register.vue";
 import Favorite from "../components/routes/Favorite.vue";
+import SeriesLink from "../components/routes/SeriesLink.vue";
 
 
 
@@ -56,6 +57,14 @@ const routes = [{
         name: "series",
         path: "/series",
         component: Series,
+        meta: {
+            requiresAuth: false
+        }
+    },
+    {
+        name: "serieslink",
+        path: "/serieslink",
+        component: SeriesLink,
         meta: {
             requiresAuth: false
         }

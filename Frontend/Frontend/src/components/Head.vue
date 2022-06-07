@@ -1,6 +1,7 @@
 <template>
   <div class="my-border header-backg">
-      <h1> 
+     <div class="seriesHub-back">
+        <h1> 
         
         <a href="#/">
 
@@ -9,6 +10,7 @@
         </a>
         
         </h1>
+       </div>
   </div>
 </template>
 
@@ -39,5 +41,13 @@ h1 :hover{
 }
 a :hover{
   color: white;
+}
+.seriesHub-back{
+  background-color: black ;
+
+    max-width: 30%;
+    margin: 0 45%;
+    border-radius: 15%;
+
 }
 </style>

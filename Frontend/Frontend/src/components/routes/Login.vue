@@ -2,11 +2,11 @@
     <div class="my-border p-3">
         <h1>Login</h1>
         <div class="mb-3 login-center">
-            <p>
-            If you won't have profile register <a href="#/register" class="here-color">here</a>
+            <p  style="color:white">
+            If you won't have profile register <a href="#/register" class="here-color"  style="color:darkblue">here</a>
 
             </p>
-            <label for="text" class="form-label"> <p>
+            <label for="text" class="form-label"> <p  style="color:white">
                  userName
                 </p></label>
             <div class="col-sm-6">
@@ -18,8 +18,8 @@
             </div>
         </div>
         <div class="mb-4  login-center">
-            <label for="password" class="form-label">
-                <p>
+            <label for="password" class="form-label" >
+                <p style="color:white">
 
                 Password
                 </p>
