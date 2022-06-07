@@ -11,6 +11,8 @@
   </Connection>
   <Settings>
     <DbDiagramOptions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <EnableComments>false</EnableComments>
+      <TableCompartments>None</TableCompartments>
       <CustomProperties />
     </DbDiagramOptions>
     <Options xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="PageOptions">
@@ -52,12 +54,12 @@
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
-              <X>70 px</X>
-              <Y>-210 px</Y>
+              <X>110 px</X>
+              <Y>-200 px</Y>
             </Location>
             <Size>
               <Width>195 px</Width>
-              <Height>161 px</Height>
+              <Height>127 px</Height>
             </Size>
             <DbOid>
               <Path>seriesdatabase.comment</Path>
@@ -75,12 +77,12 @@
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
-              <X>-380 px</X>
-              <Y>-190 px</Y>
+              <X>520 px</X>
+              <Y>-50 px</Y>
             </Location>
             <Size>
               <Width>182 px</Width>
-              <Height>127 px</Height>
+              <Height>110 px</Height>
             </Size>
             <DbOid>
               <Path>seriesdatabase.series</Path>
@@ -106,10 +108,10 @@
               <Port>
                 <Location>
                   <X>0 px</X>
-                  <Y>38.5 px</Y>
+                  <Y>63.5 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
-                <Align>Left</Align>
+                <Align>Right</Align>
                 <CustomProperties>
                   <OID>5</OID>
                   <PortType>FloatAnchor</PortType>
@@ -117,11 +119,11 @@
               </Port>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>88.5 px</Y>
+                  <X>91 px</X>
+                  <Y>0 px</Y>
                 </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Right</Align>
+                <Anchors>Left Right</Anchors>
+                <Align>Top</Align>
                 <CustomProperties>
                   <OID>6</OID>
                   <PortType>FloatAnchor</PortType>
@@ -130,12 +132,8 @@
             </PortAnchors>
             <BendPoints>
               <PointD>
-                <X>-260 px</X>
-                <Y>-171.5 px</Y>
-              </PointD>
-              <PointD>
-                <X>-260 px</X>
-                <Y>-101.5 px</Y>
+                <X>611 px</X>
+                <Y>-136.5 px</Y>
               </PointD>
             </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
@@ -154,11 +152,11 @@
             <PortAnchors>
               <Port xsi:type="LinkPort">
                 <Location>
-                  <X>165 px</X>
+                  <X>-153 px</X>
                   <Y>0 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
-                <Align>Left</Align>
+                <Align>Right</Align>
                 <CustomProperties>
                   <OID>7</OID>
                   <PortType>FixedAnchor</PortType>
@@ -177,12 +175,12 @@
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
-              <X>-400 px</X>
-              <Y>180 px</Y>
+              <X>130 px</X>
+              <Y>190 px</Y>
             </Location>
             <Size>
               <Width>173 px</Width>
-              <Height>144 px</Height>
+              <Height>110 px</Height>
             </Size>
             <DbOid>
               <Path>seriesdatabase.serieslink</Path>
@@ -207,11 +205,11 @@
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>96.5 px</X>
-                  <Y>0 px</Y>
+                  <X>0 px</X>
+                  <Y>55 px</Y>
                 </Location>
-                <Anchors>Left Right</Anchors>
-                <Align>Top</Align>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Right</Align>
                 <CustomProperties>
                   <OID>11</OID>
                   <PortType>FloatAnchor</PortType>
@@ -219,7 +217,7 @@
               </Port>
               <Port>
                 <Location>
-                  <X>76.5 px</X>
+                  <X>91 px</X>
                   <Y>0 px</Y>
                 </Location>
                 <Anchors>Left Right</Anchors>
@@ -230,6 +228,12 @@
                 </CustomProperties>
               </Port>
             </PortAnchors>
+            <BendPoints>
+              <PointD>
+                <X>611 px</X>
+                <Y>245 px</Y>
+              </PointD>
+            </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <DbOid>
               <Path>seriesdatabase.serieslink.FK_serieslink_series_id</Path>
@@ -246,11 +250,11 @@
             <PortAnchors>
               <Port xsi:type="LinkPort">
                 <Location>
-                  <X>0 px</X>
-                  <Y>121.5 px</Y>
+                  <X>-154 px</X>
+                  <Y>0 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
-                <Align>Top</Align>
+                <Align>Right</Align>
                 <CustomProperties>
                   <OID>13</OID>
                   <PortType>FixedAnchor</PortType>
@@ -269,12 +273,12 @@
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
-              <X>130 px</X>
-              <Y>180 px</Y>
+              <X>-290 px</X>
+              <Y>-20 px</Y>
             </Location>
             <Size>
               <Width>308 px</Width>
-              <Height>144 px</Height>
+              <Height>127 px</Height>
             </Size>
             <DbOid>
               <Path>seriesdatabase.user</Path>
@@ -300,10 +304,10 @@
               <Port>
                 <Location>
                   <X>0 px</X>
-                  <Y>80.5 px</Y>
+                  <Y>63.5 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
-                <Align>Right</Align>
+                <Align>Left</Align>
                 <CustomProperties>
                   <OID>17</OID>
                   <PortType>FloatAnchor</PortType>
@@ -324,8 +328,8 @@
             </PortAnchors>
             <BendPoints>
               <PointD>
-                <X>284 px</X>
-                <Y>-129.5 px</Y>
+                <X>-136 px</X>
+                <Y>-136.5 px</Y>
               </PointD>
             </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
@@ -344,11 +348,11 @@
             <PortAnchors>
               <Port xsi:type="LinkPort">
                 <Location>
-                  <X>-19 px</X>
-                  <Y>-154.75 px</Y>
+                  <X>123 px</X>
+                  <Y>0 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
-                <Align>Right</Align>
+                <Align>Left</Align>
                 <CustomProperties>
                   <OID>19</OID>
                   <PortType>FixedAnchor</PortType>
@@ -367,12 +371,12 @@
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
-              <X>-120 px</X>
-              <Y>70 px</Y>
+              <X>130 px</X>
+              <Y>10 px</Y>
             </Location>
             <Size>
               <Width>164 px</Width>
-              <Height>144 px</Height>
+              <Height>110 px</Height>
             </Size>
             <DbOid>
               <Path>seriesdatabase.favorite</Path>
@@ -397,11 +401,11 @@
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>82 px</X>
-                  <Y>0 px</Y>
+                  <X>0 px</X>
+                  <Y>25 px</Y>
                 </Location>
-                <Anchors>Left Right</Anchors>
-                <Align>Top</Align>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Right</Align>
                 <CustomProperties>
                   <OID>23</OID>
                   <PortType>FloatAnchor</PortType>
@@ -410,22 +414,16 @@
               <Port>
                 <Location>
                   <X>0 px</X>
-                  <Y>63.5 px</Y>
+                  <Y>85 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
-                <Align>Right</Align>
+                <Align>Left</Align>
                 <CustomProperties>
                   <OID>24</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
             </PortAnchors>
-            <BendPoints>
-              <PointD>
-                <X>-38 px</X>
-                <Y>-126.5 px</Y>
-              </PointD>
-            </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <DbOid>
               <Path>seriesdatabase.favorite.FK_favorite_series_id</Path>
@@ -442,11 +440,11 @@
             <PortAnchors>
               <Port xsi:type="LinkPort">
                 <Location>
-                  <X>0 px</X>
-                  <Y>98.25 px</Y>
+                  <X>-113 px</X>
+                  <Y>0 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
-                <Align>Top</Align>
+                <Align>Right</Align>
                 <CustomProperties>
                   <OID>25</OID>
                   <PortType>FixedAnchor</PortType>
@@ -473,10 +471,10 @@
               <Port>
                 <Location>
                   <X>0 px</X>
-                  <Y>132 px</Y>
+                  <Y>48.5 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
-                <Align>Right</Align>
+                <Align>Left</Align>
                 <CustomProperties>
                   <OID>28</OID>
                   <PortType>FloatAnchor</PortType>
@@ -485,26 +483,16 @@
               <Port>
                 <Location>
                   <X>0 px</X>
-                  <Y>12 px</Y>
+                  <Y>78.5 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
-                <Align>Left</Align>
+                <Align>Right</Align>
                 <CustomProperties>
                   <OID>29</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
             </PortAnchors>
-            <BendPoints>
-              <PointD>
-                <X>64 px</X>
-                <Y>202 px</Y>
-              </PointD>
-              <PointD>
-                <X>64 px</X>
-                <Y>192 px</Y>
-              </PointD>
-            </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <DbOid>
               <Path>seriesdatabase.favorite.FK_favorite_user_id</Path>
@@ -521,11 +509,11 @@
             <PortAnchors>
               <Port xsi:type="LinkPort">
                 <Location>
-                  <X>-53 px</X>
-                  <Y>10 px</Y>
+                  <X>56 px</X>
+                  <Y>0 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
-                <Align>Right</Align>
+                <Align>Left</Align>
                 <CustomProperties>
                   <OID>30</OID>
                   <PortType>FixedAnchor</PortType>
@@ -543,8 +531,8 @@
           <ScaleMode>Free</ScaleMode>
           <Scale>1</Scale>
           <Location>
-            <X>-583 px</X>
-            <Y>-333.239990234375 px</Y>
+            <X>-371 px</X>
+            <Y>-269 px</Y>
           </Location>
         </ViewPort>
       </Model>
