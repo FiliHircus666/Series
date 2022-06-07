@@ -19,12 +19,10 @@ Vue.use(VueResource);
 Vue.use(VueRouter);
 
 class User {
-    constructor(firstName = null, lastName = null, gender = null, email = null, permission = null) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.email = email;
-       
+    constructor(userName = null, Email = null, password= null,  permission = null) {
+        this.userName = userName;
+        this.Email = Email;
+        this.password = password;
         this.permission = permission;
     }
 }

@@ -14,7 +14,7 @@
                             <button
                                 type="button"
                                 class="btn btn-light ms-1 btn-sm"
-                                @click="onClickNew()">
+                                @click="onClickNew()"  v-if="loggedIn() == 1">
                                 <i class="bi bi-plus-lg"></i>
                             </button>
                         </th>
@@ -53,7 +53,7 @@
                                 type="button"
                                 class="btn btn-light ms-1 btn-sm"
                                 @click="onClickFavorite(series.id)"
-                                v-if="loggedIn() == 0">
+                                v-if="loggedIn() == 3">
                                 <i class="bi bi-star"></i>
                             </button>
                         </td>

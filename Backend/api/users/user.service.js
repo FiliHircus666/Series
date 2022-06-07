@@ -5,7 +5,7 @@ module.exports = {
         let queryString = `insert into user
             (userName,password,Email,permission)
             values
-            (?,?,?,0)
+            (?,?,?,?)
         `
         let params = Object.values(data);
         pool.query(queryString, params, (error, results, fields) => {

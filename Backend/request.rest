@@ -22,10 +22,10 @@ post http://localhost:3000/api/users/register
 Content-Type: application/json
 
 {
-    "userName": "Admin",
+    "userName": "TyapTyap",
     "password": "AdminPass",
     "Email": "Amdin@gmail.com",
-    "permission": 1
+    "permission": 3
 }
 
 
@@ -40,7 +40,7 @@ Content-Type: application/json
     "userName": "TyapTyap",
     "password": "Tyap",
     "Email": "TyapTyap@gmail.com",
-    "number": 2,
+    "number": 3,
     "id": 20
 }
 
