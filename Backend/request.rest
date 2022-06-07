@@ -1,33 +1,30 @@
 ### login
-post http://localhost:3000/api/users/login
+post http://localhost:3000/api/login
 Content-Type: application/json
 
 {
-    "userName": "user",
-    "password": "userPass"
+    "userName": "admin",
+    "password": "admin"
 }
-
 
 ### Userek
 get http://localhost:3000/api/users
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NDkxNDQwMywiZXhwIjoxNjQ0OTE4MDAzfQ.HziYtxm6_7FDCIwLcupJVsE60purxD0Pu7Tib-o_lLA
 
-
 ### Egy user
-get http://localhost:3000/api/users/10
+get http://localhost:3000/api/users/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NDMxNTE5NCwiZXhwIjoxNjQ0MzE4Nzk0fQ.q2ih8UiVs51Pa3UEc908O6tLt5Upl9NOlidEmQSksMQ
 
 ### User hozzáadása
-post http://localhost:3000/api/users/register
+post http://localhost:3000/api/register
 Content-Type: application/json
 
 {
-    "userName": "user",
-    "password": "us",
-    "Email": "Mark@gmail.com",
-    "permission": 2
+    "userName": "vendeg",
+    "password": "vendeg",
+    "email": "vendeg@gmail.com",
+    "permission": "1"
 }
-
 
 ### Userek
 get http://localhost:3000/api/users
@@ -52,49 +49,81 @@ Content-Type: application/json
     "id": 18
 }
 
+### get categories
+get http://localhost:3000/api/categories
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTEyNTYzOCwiZXhwIjoxNjQ1MTI5MjM4fQ.62U_xM_tXvohkZ1TlZqxSLLil5Y1dTbfmPgB2JYUlsQ
+
+### create categorys
+post http://localhost:3000/api/categories
+Content-Type: application/json
+
+{
+     "CategoryName": "Horror"
+}
+
+### Egy category
+get http://localhost:3000/api/categories/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTQ0NjI3MiwiZXhwIjoxNjQ1NDQ5ODcyfQ.mt6Ga598tVLQ3QXty4BF-amaU2Jbaww4U5z5AaUXvsg
+
+### category módosítása
+put http://localhost:3000/api/categories
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTEyNTYzOCwiZXhwIjoxNjQ1MTI5MjM4fQ.62U_xM_tXvohkZ1TlZqxSLLil5Y1dTbfmPgB2JYUlsQ
+
+{
+    "CategoryName": "Romantika",
+    "id": 4
+}
+
+### Delete category
+delete http://localhost:3000/api/categories
+Content-Type: application/json
+
+{
+    "id": 1
+}
 
 ### series by id
-get http://localhost:3000/api/user/series/20
-
+get http://localhost:3000/api/series/20
 
 ### get Series
-get http://localhost:3000/api/user/series
+get http://localhost:3000/api/series
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTEyNTYzOCwiZXhwIjoxNjQ1MTI5MjM4fQ.62U_xM_tXvohkZ1TlZqxSLLil5Y1dTbfmPgB2JYUlsQ
 
 ### get series abc-ben
 get http://localhost:3000/api/seriesabc
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTEyNTYzOCwiZXhwIjoxNjQ1MTI5MjM4fQ.62U_xM_tXvohkZ1TlZqxSLLil5Y1dTbfmPgB2JYUlsQ
 
-
 ### Egy series
-get http://localhost:3000/api/user/series/
+get http://localhost:3000/api/series/2
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTQ0NjI3MiwiZXhwIjoxNjQ1NDQ5ODcyfQ.mt6Ga598tVLQ3QXty4BF-amaU2Jbaww4U5z5AaUXvsg
 
 ### series releaseDate
-get http://localhost:3000/api/user/seriesr/2021
+get http://localhost:3000/api/series/2021
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTEyNTYzOCwiZXhwIjoxNjQ1MTI5MjM4fQ.62U_xM_tXvohkZ1TlZqxSLLil5Y1dTbfmPgB2JYUlsQ
 
-
 ### series hozzáadása
-post http://localhost:3000/api/user/favorite/series
+post http://localhost:3000/api/series
 Content-Type: application/json
 
 {
-    "name": "The Last Kingdom",
-    "releaseDate": "2015",
-    "ageLimit": "16"
+    "seriesName": "The Walking Dead",
+    "releaseDate": "2010",
+    "ageLimit": "18",
+    "categoryId": 2
 }
 
 ### series módosítása
-put http://localhost:3000/api/user/series
+put http://localhost:3000/api/series
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTEyNTYzOCwiZXhwIjoxNjQ1MTI5MjM4fQ.62U_xM_tXvohkZ1TlZqxSLLil5Y1dTbfmPgB2JYUlsQ
 
 {
-    "name": "Silicon Valley",
-    "releaseDate": "2014",
-    "ageLimit": "16",
-    "id": 12
+    "seriesName": "The Walking Dead",
+    "releaseDate": "2010",
+    "ageLimit": "18",
+    "categoryId": 1,
+    "id": 1
 }
 
 ### Delete Series
@@ -113,7 +142,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiO
 ### get favorite series
 get http://localhost:3000/api/user/favorite/series
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTE4NDU0OCwiZXhwIjoxNjQ1MTg4MTQ4fQ.ZfziExVQH3QxqR0Fy9TEVcgbaFfrEnyNDVhuF389Irw
-
 
 ### Egy favorite
 get http://localhost:3000/api/user/favorite/series
@@ -162,21 +190,16 @@ post http://localhost:3000/api/user/series/comment
 Content-Type: application/json
 
 { 
-    "userId": "19", 
-    "userComment": "I not like this", 
-    "seriesId": "51",
+    "userId": 1, 
+    "comment": "I not like this", 
+    "seriesId": 1,
     "ratePoint": 3
  }
 
 ###Get comment 
 get http://localhost:3000/api/user/favorite/series/comment
 
-# ### Betörés
-# ### adatbázis lekérdezése
-# get http://localhost:3000/api/user/seriesr:12 union '', select database(), '', ''
-# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTUwOTI2MSwiZXhwIjoxNjQ1NTEyODYxfQ._qC5Aig2xIdLg_bIISkLQOPtd4v4OH833KUt06A79r0
-
-### GetseriesLi
+### GetseriesLink
 get http://localhost:3000/api/series/serieslink
 
 ### series link delete

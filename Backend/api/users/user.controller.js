@@ -24,7 +24,13 @@ const {
     getSeriesLink,
     getSeriesLinkById,
     deleteSeriesLink,
-    updateSeriesLink
+    updateSeriesLink,
+    createCategories,
+    getCategoriesById,
+    updateCategories,
+    deleteCategories,
+    getCategories
+    
 } = require("./user.service.js");
 
 const {
@@ -643,6 +649,132 @@ module.exports = {
     },
     getSeriesLink: (req, res) => {
         getSeriesLink((err, results) => {
+            if (err) {
+                return res.status(500).json({
+                    success: -1,
+                    message: "Server error",
+                    data: []
+                });
+            }
+            if (results.length == 0) {
+                return res.status(200).json({
+                    success: 0,
+                    message: "No records",
+                    data: results
+                });
+            }
+            return res.status(200).json({
+                success: 1,
+                message: "Get successfully",
+                data: results
+            });
+        });
+    },
+    createCategories: (req, res) => {
+        const body = req.body;
+        console.log(body);
+        createCategories(body, (err, results) => {
+            console.log(results);
+            if (err) {
+                console.log(err);
+                // console.log("Hiba");
+                return res.status(500).json({
+                    success: -1,
+                    message: "database connection error",
+                    data: {}
+                })
+                ;
+            }
+            if (results.affectedRows == 0) {
+                return res.status(200).json({
+                    success: 0,
+                    message: "Not created categories",
+                    data: results
+                });
+            }
+            return res.status(200).json({
+                success: 1,
+                message: "Created categories",
+                data: results
+            });
+        });
+    },
+    getCategoriesById: (req, res) => {
+        const id = req.params.id;
+        getCategoriesById(id, (err, results) => {
+            if (err) {
+                return res.status(500).json({
+                    success: -1,
+                    message: "Server error",
+                    data: {}
+                });
+            }
+            if (!results) {
+                return res.status(200).json({
+                    success: 0,
+                    message: "Record not found!",
+                    data: {}
+                })
+            }
+            return res.status(200).json({
+                success: 1,
+                message: "Record found!",
+                data: results
+            });
+        });
+    },
+    updateCategories: (req, res) => {
+        const body = req.body;
+        updateCategories(body, (err, results) => {
+            if (err) {
+                return res.status(500).json({
+                    success: -1,
+                    message: "Server error",
+                    data: {}
+                });
+            }
+            if (results.affectedRows == 0) {
+                return res.status(200).json({
+                    success: 0,
+                    message: "Not updated",
+                    data: results
+                });
+            }
+            return res.status(200).json({
+                success: 1,
+                message: "Updated successfully",
+                data: results
+            });
+        });
+    },
+    deleteCategories: (req, res) => {
+        const data = req.body;
+        deleteCategories(data, (err, results) => {
+            // console.log(results);
+            if (err) {
+                res.status(500).json({
+                    deletedRows: 0,
+                    success: -1,
+                    message: "Server error"
+                })
+                return;
+            }
+            if (results.affectedRows == 0) {
+                return res.status(200).json({
+                    success: 0,
+                    message: "Record Not Found",
+                    data: results
+                });
+            }
+            return res.status(200).json({
+                success: 1,
+                message: "Deleted successfully",
+                data: results
+            });
+        });
+    },
+    getCategories: (req, res) => {
+        getCategories((err, results) => {
             if (err) {
                 return res.status(500).json({
                     success: -1,

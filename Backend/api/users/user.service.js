@@ -2,12 +2,17 @@ const pool = require("../../config/database.js");
 
 module.exports = {
     create: (data, callBack) => {
-        let queryString = `insert into user
-            (userName,password,Email,permission)
+        let queryString = `insert into users
+            (userName,password,email,permission)
             values
-            (?,?,?,1)
+            (?,?,?,?)
         `
-        let params = Object.values(data);
+        let params = [
+            data.userName,
+            data.password,
+            data.email,
+            data.permission
+        ];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
                 return callBack(error);
@@ -18,9 +23,29 @@ module.exports = {
     },
     createSeries: (data, callBack) => {
         let queryString = `INSERT INTO series
-                    (name,releaseDate,ageLimit)
+                    (seriesName,releaseDate,ageLimit,categoryId)
                     VALUES
-                    (?, ?, ?)
+                    (?, ?, ?, ?)
+        `
+        let params = [
+            data.seriesName,
+            data.releaseDate,
+            data.ageLimit,
+            data.categoryId
+        ];
+        pool.query(queryString, params, (error, results, fields) => {
+            if (error) {
+                return callBack(error);
+
+            }
+            return callBack(null, results);
+        });
+    },
+    createCategories: (data, callBack) => {
+        let queryString = `INSERT INTO categories
+        (categoryName)
+        VALUES
+        (?)
         `
         let params = Object.values(data);
         pool.query(queryString, params, (error, results, fields) => {
@@ -31,8 +56,59 @@ module.exports = {
             return callBack(null, results);
         });
     },
+    updateCategories: (data, callBack) => {
+        const queryString = `UPDATE categories SET
+        categoryName = ?
+     WHERE id = ?`;
+        // const params = Object.values(data);
+        const params = [
+            data.CategoryName,
+            data.id
+        ]
+        console.log("Update category:",params);
+        pool.query(queryString, params, (error, results, fields) => {
+            console.log(params, queryString, results);
+            if (error) {
+                return callBack(error);
+
+            }
+            return callBack(null, results);
+        });
+    },
+    getCategories: callBack => {
+        const queryString = `select * from categories`;
+        const params = [];
+        pool.query(queryString, params, (error, results, fields) => {
+            if (error) {
+                return callBack(error);
+
+            }
+            return callBack(null, results);
+        });
+    },
+    getCategoriesById: (id, callBack) => {
+        const queryString = `select * from categories where id=?`;
+        const params = [id];
+        pool.query(queryString, params, (error, results, fields) => {
+            if (error) {
+                return callBack(error);
+
+            }
+            return callBack(null, results[0]);
+        });
+    },
+    deleteCategories: (data, callBack) => {
+        const queryString = `delete from categories where id = ?`;
+        const params = [data.id];
+        pool.query(queryString, params, (error, results, fields) => {
+            if (error) {
+                return callBack(error);
+            }
+            return callBack(null, results);
+        });
+    },
     createFavorite: (data, callBack) => {
-        let queryString = `INSERT INTO favorite
+        let queryString = `INSERT INTO favorites
                             (userId,seriesId,watched)
                             VALUES
                             (?, ?, ?)
@@ -48,12 +124,17 @@ module.exports = {
         });
     },
     createComment: (data, callBack) => {
-        let queryString = `INSERT INTO comment
-        (userId,userComment,seriesId,ratePoint)
+        let queryString = `INSERT INTO comments
+        (userId,comment,seriesId,ratePoint)
         VALUES
         (?,?,?,?);
         `
-        let params = Object.values(data);
+        let params = [
+            data.userId,
+            data.comment,
+            data.seriesId,
+            data.ratePoint
+        ];
         console.log("x:", data, params);
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
@@ -64,7 +145,7 @@ module.exports = {
         });
     },
     getUserByUserName: (userName, callBack) => {
-        let queryString = `select * from user where userName = ?`;
+        let queryString = `select * from users where userName = ?`;
         let params = [userName];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
@@ -74,7 +155,7 @@ module.exports = {
         });
     },
     getUsers: callBack => {
-        const queryString = `select * from user`;
+        const queryString = `select * from users`;
         const params = [];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
@@ -96,8 +177,8 @@ module.exports = {
         });
     },
     getSeriesABC: callBack => {
-        const queryString = `select name, id from series
-                                order by name`;
+        const queryString = `select seriesName, id from series
+                                order by seriesName`;
         const params = [];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
@@ -108,7 +189,7 @@ module.exports = {
         });
     },
     getFavorites: callBack => {
-        const queryString = `select * from favorite `;
+        const queryString = `select * from favorites `;
         const params = [];
         // select distinct s.name from favorite f
         // INNER JOIN series s on s.id = f.seriesId
@@ -122,7 +203,7 @@ module.exports = {
         });
     },
     getUserByUserId: (id, callBack) => {
-        const queryString = `select * from user where id=?`;
+        const queryString = `select * from users where id=?`;
         const params = [id];
         // params= []
         // const queryString = `select * from registration where id=${id}`;
@@ -137,7 +218,7 @@ module.exports = {
         });
     },
     getComments: callBack => {
-        const queryString = `select  * from comment`;
+        const queryString = `select * from comments`;
         const params = [];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
@@ -208,7 +289,7 @@ module.exports = {
         });
     },
     getFavoriteById: (id, callBack) => {
-        const queryString = `select * from favorite where id=?`;
+        const queryString = `select * from favorites where id=?`;
         const params = [id];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
@@ -219,8 +300,8 @@ module.exports = {
         });
     },
     updateUser: (data, callBack) => {
-        const queryString = `update user set 
-                    userName=?, password=?, Email=?, permission=?
+        const queryString = `update users set 
+                    userName=?, password=?, email=?, permission=?
                     where id=?`;
         const params = Object.values(data);
         pool.query(queryString, params, (error, results, fields) => {
@@ -234,13 +315,14 @@ module.exports = {
     },
     updateSeries: (data, callBack) => {
         const queryString = `UPDATE series set
-                name=?, releaseDate=?, ageLimit=?
+        seriesName=?, releaseDate=?, ageLimit=?, categoryId=?
                 where id= ?`;
         // const params = Object.values(data);
         const params = [
-            data.name,
+            data.seriesName,
             data.releaseDate,
             data.ageLimit,
+            data.categoryId,
             data.id
         ]
         console.log("Update series:",params);
@@ -254,7 +336,7 @@ module.exports = {
         });
     },
     updateFavorite: (data, callBack) => {
-        const queryString = `UPDATE favorite SET
+        const queryString = `UPDATE favorites SET
                 userId=?, seriesId=?, Watched=?
                 where id=?;
                 `;
@@ -275,7 +357,7 @@ module.exports = {
         });
     },
     updateComment: (data, callBack) => {
-        const queryString = `UPDATE comment SET
+        const queryString = `UPDATE comments SET
                 userId=?, userComment=?, seriesId=?,ratePoint = ? 
                 where id=?;
                 `;
@@ -297,7 +379,7 @@ module.exports = {
         });
     },
     updateSeriesLink: (data, callBack) => {
-        const queryString = `UPDATE comment SET
+        const queryString = `UPDATE comments SET
                 seriesId=?, videoLink = ? 
                 where id=?;
                 `;
@@ -317,7 +399,7 @@ module.exports = {
         });
     },
     deleteUser: (data, callBack) => {
-        const queryString = `delete from user where id = ?`;
+        const queryString = `delete from users where id = ?`;
         const params = [data.id];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
@@ -337,7 +419,7 @@ module.exports = {
         });
     },
     deleteSeriesLink: (data, callBack) => {
-        const queryString = `delete from serieslink where id = ?`;
+        const queryString = `delete from serieslinks where id = ?`;
         const params = [data.id];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
@@ -347,7 +429,7 @@ module.exports = {
         });
     },
     deleteFavorite: (data, callBack) => {
-        const queryString = `delete from favorite where id = ?`;
+        const queryString = `delete from favorites where id = ?`;
         const params = [data.id];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
@@ -357,7 +439,7 @@ module.exports = {
         });
     },
     deleteComment: (data, callBack) => {
-        const queryString = `delete from comment where id = ?`;
+        const queryString = `delete from comments where id = ?`;
         const params = [data.id];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
