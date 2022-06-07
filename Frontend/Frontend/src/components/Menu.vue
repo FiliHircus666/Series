@@ -19,7 +19,7 @@
                     class="collapse navbar-collapse"
                     id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                         <li class="nav-item">
+                         <li class="nav-item" v-if="loggedIn() != 1 || loggedIn() == 2">
                              <router-link class="nav-link"
                                 to="/register"
                                 role="button"
@@ -27,7 +27,7 @@
                                 Register</router-link>
                          </li>
                         <!--#region adatKarbantartás -->
-                        <li class="nav-item dropdown" v-if="loggedIn() == 1 || loggedIn() == 2" >
+                        <li class="nav-item dropdown" v-if="loggedIn() == 'null' || loggedIn() == 1" >
                             <a
                                 class="nav-link dropdown-toggle"
                                 href="#"
@@ -48,7 +48,7 @@
                                     >
                                 </li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li v-if="loggedIn() == 1 ">
+                            <li v-if="loggedIn() !=  1 ||loggedIn() == permission == 0 ">
                                     <router-link
                                         class="dropdown-item"
                                         to="/users"
@@ -103,7 +103,7 @@
                             <router-link
                                 class="nav-link"
                                 to="/login"
-                                v-if="!loggedIn()"
+                                v-if="!loggedIn() != null"
                                 >Login</router-link
                             >
                         </li>

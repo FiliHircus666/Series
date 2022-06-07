@@ -5,7 +5,7 @@ module.exports = {
         let queryString = `insert into user
             (userName,password,Email,permission)
             values
-            (?,?,?,?)
+            (?,?,?,1)
         `
         let params = Object.values(data);
         pool.query(queryString, params, (error, results, fields) => {
@@ -173,6 +173,40 @@ module.exports = {
             return callBack(null, results);
         });
     },
+    getSeriesLink:  callBack => {
+        //biztonságos megodás
+        const queryString = `SELECT s.name,s.releaseDate,s.ageLimit,sl.videoLink FROM series s
+        LEFT JOIN serieslink sl on s.id = sl.seriesId`;
+        const params = [];
+        //öngyilkos megoldás
+        // const queryString = `select * from series where Release `;
+        // const params = [];
+        pool.query(queryString, params, (error, results, fields) => {
+            if (error) {
+                return callBack(error);
+
+            }
+            console.log("results:",results);
+            return callBack(null, results);
+        });
+    },
+    getSeriesLinkById:  callBack => {
+        //biztonságos megodás
+        const queryString = `
+        SELECT * FROM serieslink WHERE id = ?`;
+        const params = [];
+        //öngyilkos megoldás
+        // const queryString = `select * from series where Release `;
+        // const params = [];
+        pool.query(queryString, params, (error, results, fields) => {
+            if (error) {
+                return callBack(error);
+
+            }
+            console.log("results:",results);
+            return callBack(null, results);
+        });
+    },
     getFavoriteById: (id, callBack) => {
         const queryString = `select * from favorite where id=?`;
         const params = [id];
@@ -262,6 +296,26 @@ module.exports = {
             return callBack(null, results);
         });
     },
+    updateSeriesLink: (data, callBack) => {
+        const queryString = `UPDATE comment SET
+                seriesId=?, videoLink = ? 
+                where id=?;
+                `;
+        // const params = Object.values(data);
+        params = [
+            data.seriesId,
+            data.videoLink,
+            data.id
+        ]
+        pool.query(queryString, params, (error, results, fields) => {
+            // console.log(params, queryString, results);
+            if (error) {
+                return callBack(error);
+
+            }
+            return callBack(null, results);
+        });
+    },
     deleteUser: (data, callBack) => {
         const queryString = `delete from user where id = ?`;
         const params = [data.id];
@@ -274,6 +328,16 @@ module.exports = {
     },
     deleteSeries: (data, callBack) => {
         const queryString = `delete from series where id = ?`;
+        const params = [data.id];
+        pool.query(queryString, params, (error, results, fields) => {
+            if (error) {
+                return callBack(error);
+            }
+            return callBack(null, results);
+        });
+    },
+    deleteSeriesLink: (data, callBack) => {
+        const queryString = `delete from serieslink where id = ?`;
         const params = [data.id];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {

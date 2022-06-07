@@ -1,7 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
-
 import VueResource from "vue-resource";
+
 import VueRouter from "vue-router";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -19,10 +19,11 @@ Vue.use(VueResource);
 Vue.use(VueRouter);
 
 class User {
-    constructor(userName = null, Email = null, password= null,  permission = null) {
+    constructor(userName = null, email = null, password = null, permission = null) {
         this.userName = userName;
-        this.Email = Email;
+        this.email = email;
         this.password = password;
+       
         this.permission = permission;
     }
 }
@@ -62,7 +63,7 @@ router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
         // this route requires auth, check if logged in
         // if not, redirect to login page.
-        if (permission != null) {
+        if (permission != "null") {
             next({
                 path: '/login'
             })

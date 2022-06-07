@@ -22,10 +22,10 @@ post http://localhost:3000/api/users/register
 Content-Type: application/json
 
 {
-    "userName": "TyapTyap",
-    "password": "AdminPass",
-    "Email": "Amdin@gmail.com",
-    "permission": 3
+    "userName": "user",
+    "password": "us",
+    "Email": "Mark@gmail.com",
+    "permission": 2
 }
 
 
@@ -37,12 +37,12 @@ put http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-    "userName": "TyapTyap",
-    "password": "Tyap",
-    "Email": "TyapTyap@gmail.com",
-    "number": 3,
-    "id": 20
-}
+    "userName": "User",
+    "password": "us",
+    "Email": "Admin@gmail.com",
+    "permission": 1,
+    "id": 18
+    }
 
 ### Delete user
 delete http://localhost:3000/api/users
@@ -158,16 +158,31 @@ Content-Type: application/json
 get http://localhost:3000/api/user/series/favorite
 
 ### Create Comment
-post http://localhost:3000/api/user/favorite/series/comment
+post http://localhost:3000/api/user/series/comment
 Content-Type: application/json
+
 { 
-    "userId": "10", 
+    "userId": "19", 
     "userComment": "I not like this", 
-    "seriesId": "12",
+    "seriesId": "51",
     "ratePoint": 3
  }
+
+###Get comment 
+get http://localhost:3000/api/user/favorite/series/comment
 
 # ### Betörés
 # ### adatbázis lekérdezése
 # get http://localhost:3000/api/user/seriesr:12 union '', select database(), '', ''
 # Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTUwOTI2MSwiZXhwIjoxNjQ1NTEyODYxfQ._qC5Aig2xIdLg_bIISkLQOPtd4v4OH833KUt06A79r0
+
+### GetseriesLi
+get http://localhost:3000/api/series/serieslink
+
+### series link delete
+delete http://localhost:3000/api/user/series/serieslink
+Content-Type: application/json
+
+{
+    "id": 7
+}

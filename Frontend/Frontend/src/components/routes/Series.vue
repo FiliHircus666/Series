@@ -1,67 +1,70 @@
 <template>
-    <div class=" my-border">
-        <div>
-            <h1>Series</h1>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">SeriesName</th>
-                        <th scope="col">ReleaseDate</th>
-                        <th scope="col">ageLimit</th>
-                        <th scope="col">
-                            Műveletek
-                            <!-- new -->
+    <div class="my-border">
+        <button
+            type="button"
+            class="btn btn-light ms-1 btn-sm"
+            @click="onClickNew()">
+            <i class="bi bi-plus-lg"></i>
+        </button>
+        <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4 p-4">
+            <div class="col" v-for="(series, index) in serieses" :key="index">
+                <div class="card h-100">
+                    <div class="card-body card-txt-color">
+                        <div v-html="getVideoFromLink(series.videoLink)"></div>
+
+                        <h4 class="card-title">
+                            {{ series.name }}
+                        </h4>
+
+                        <!-- <p v-html="embed" class="card-text"><a :href="gamelink.link">
+                            {{ gamelink.link }} </a></p> -->
+                        <p class="card-title">{{ series.releaseDate }}</p>
+                        <p class="card-text">{{ series.ageLimit }}</p>
+                        <div class="row">
                             <button
                                 type="button"
-                                class="btn btn-light ms-1 btn-sm"
-                                @click="onClickNew()"  v-if="loggedIn() == 1">
-                                <i class="bi bi-plus-lg"></i>
-                            </button>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr
-                        v-for="(series, index) in serieses"
-                        :key="index"
-                        class="static"
-                        @click="onClickRow(series.id)"
-                        :class="{ 'bg-primary': series.id == isValid }">
-                        <td>{{ series.name }}</td>
-                        <td>{{ series.releaseDate }}</td>
-                        <td>{{ series.ageLimit }}</td>
-                        <td>
-                            <!-- edit -->
-                            <button
-                                type="button"
-                                class="btn  btn-light ms-1 btn-sm"
+                                class="
+                                    btn btn-light
+                                    ms-1
+                                    btn-sm
+                                    col-lg-4 col-sm-12 col-md-4
+                                "
                                 @click="onClickEdit(series.id)"
-                                v-if="loggedIn() == 1" >
+                                v-if="loggedIn()">
                                 <i class="bi bi-pencil"></i>
                             </button>
 
                             <!-- delete -->
                             <button
                                 type="button"
-                                class="btn btn-light ms-1 btn-sm"
+                                class="
+                                    btn btn-light
+                                    ms-1
+                                    btn-sm
+                                    col-lg-4 col-sm-12 col-md-4
+                                "
                                 @click="onClickDelete(series.id)"
-                                v-if="loggedIn() == 1">
+                                v-if="loggedIn()">
                                 <i class="bi bi-archive"></i>
                             </button>
                             <!-- Favorite -->
-                             <button
+                            <button
                                 type="button"
-                                class="btn btn-light ms-1 btn-sm"
+                                class="
+                                    btn btn-light
+                                    ms-1
+                                    btn-sm
+                                    col-lg-3 col-sm-12 col-md-4
+                                "
                                 @click="onClickFavorite(series.id)"
-                                v-if="loggedIn() == 3">
+                                v-if="loggedIn()">
                                 <i class="bi bi-star"></i>
                             </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-       
         <!-- Button trigger modal -->
         <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">
   Launch demo modal
@@ -120,7 +123,8 @@
                                     v-model="serieses.releaseDate"
                                     required />
                                 <div class="invalid-feedback">
-                                    Az sorozat kiadási dátuma nem megfelelő                                </div>
+                                    Az sorozat kiadási dátuma nem megfelelő
+                                </div>
                             </div>
                             <!-- hourlyRate -->
                             <div class="mb-3 col-5">
@@ -162,17 +166,14 @@
 </template>
 
 <script>
+
 class Series {
-    constructor(
-        id = null,
-        name = null,
-        releaseDate = null,
-        ageLimit = null
-    ) {
+    constructor(id = null, name = null, releaseDate = null, ageLimit = null,videoLink = null) {
         this.id = id;
         this.name = name;
         this.releaseDate = releaseDate;
         this.ageLimit = ageLimit;
+        this.videoLink = videoLink;
     }
 }
 
@@ -186,11 +187,14 @@ export default {
             state: "view",
             stateTitle: null,
             series: new Series(),
+            seroesId: null,
             form: null,
+            embed: null,
             isValid: null,
         };
     },
     created() {
+        this.getSeriesLink();
         this.getSeries();
     },
     mounted() {
@@ -200,8 +204,8 @@ export default {
         this.form = document.querySelector(".needs-validation");
     },
     methods: {
-                loggedIn() {
-            return Boolean(this.$root.$data.user.permission) 
+        loggedIn() {
+            return Boolean(this.$root.$data.user.permission);
         },
 
         getSeries() {
@@ -272,7 +276,7 @@ export default {
             headers.append("Authorization", "Bearer " + this.$root.$data.token);
             const url = `${this.$loginServer}/api/user/series/${id}`;
             let data = {
-                id: id
+                id: id,
             };
             fetch(url, {
                 method: "DELETE",
@@ -294,7 +298,7 @@ export default {
             headers.append("Content-Type", "application/json");
             headers.append("Authorization", "Bearer " + this.$root.$data.token);
             const url = `${this.$loginServer}/api/user/series`;
-            let data = this.serieses;
+            let data = this.series;
             delete data.id;
             fetch(url, {
                 method: "POST",
@@ -309,6 +313,38 @@ export default {
                 .catch((error) => {
                     console.error("Error:", error);
                 });
+        },
+        getSeriesLink() {
+            let headers = new Headers();
+            headers.append("Content-Type", "application/json");
+            headers.append("Authorization", "Bearer " + this.$root.$data.token);
+            const url = `${this.$loginServer}/api/series/serieslink`;
+            fetch(url, {
+                method: "GET",
+                headers: headers,
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    this.series = data.data;
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    this.series = [];
+                });
+        },
+        getVideoFromLink(videoLink) {
+            // videoLink = videoLink.split("=")[1];
+            return `<iframe width="100%" height="315"
+                src=" https://youtube.be/embed/${videoLink}"
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; 
+                autoplay; 
+                clipboard-write; 
+                encrypted-media; 
+                gyroscope; 
+                picture-in-picture" allowfullscreen>
+                </iframe>`;
         },
         onClickNew() {
             this.state = "new";
@@ -331,6 +367,12 @@ export default {
             this.state = "view";
             this.modal.hide();
         },
+        //  onClickFavorite(id){
+        //     this.state = "new";
+        //     this.state = "Favorite-hoz adás";
+        //     this.favorite = new Favorite();
+        //     this.state = "view";
+        // },
         onClickSaveData() {
             this.form.classList.add("was-validated");
             if (this.form.checkValidity()) {
@@ -355,20 +397,38 @@ export default {
 </script>
 
 <style>
-div{color: white;}
-.table{
-    color: white;
-    }
-.icons-color{
+.button-right {
+    text-align: justify;
+    margin: 0 40%;
+    width: 20%;
+}
+div {
     color: white;
 }
-tbody{
+.table {
+    color: white;
+}
+.icons-color {
+    color: white;
+}
+tbody {
     max-width: 50%;
 }
-.modal-header{
+.modal-header {
     color: black;
 }
-label{
+label {
     color: black;
+}
+h4,
+p {
+    color: black;
+}
+img {
+    max-width: 100%;
+}
+textarea {
+    max-width: 75%;
+    margin: 0 12%;
 }
 </style>
