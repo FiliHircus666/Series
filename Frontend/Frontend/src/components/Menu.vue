@@ -49,15 +49,9 @@
                                         >Sorozatok</router-link
                                     >
                                 </li>
-                                <li>
-                                     <router-link
-                                        class="dropdown-item"
-                                        to="/serieslink"
-                                        >Sorozat linkek</router-link
-                                    >
-                                </li>
+                                
                                 <li><hr class="dropdown-divider" /></li>
-                            <li v-if="loggedIn() !=  1 ||loggedIn() == permission == 0 ">
+                            <li v-if="loggedIn() ">
                                     <router-link
                                         class="dropdown-item"
                                         to="/users"
