@@ -18,6 +18,7 @@ CREATE TABLE serieshub.series (
   releaseDate VARCHAR(255) DEFAULT NULL,
   ageLimit VARCHAR(255) DEFAULT NULL,
   categoryId INT(11) DEFAULT NULL,
+  image VARCHAR(255) DEFAULT NULL,
   PRIMARY KEY (id)
 )
 ENGINE = INNODB,
@@ -33,7 +34,7 @@ CREATE TABLE serieshub.comments (
   userid INT(11) DEFAULT NULL,
   comment VARCHAR(255) DEFAULT NULL,
   seriesId INT(11) DEFAULT NULL,
-  reatePoint INT(11) DEFAULT NULL,
+   ratePoint INT(11) DEFAULT NULL,
   PRIMARY KEY (id)
 )
 ENGINE = INNODB,

@@ -3,8 +3,8 @@ post http://localhost:3000/api/login
 Content-Type: application/json
 
 {
-    "userName": "admin",
-    "password": "admin"
+    "userName": "user",
+    "password": "us"
 }
 
 ### Userek
@@ -58,7 +58,7 @@ post http://localhost:3000/api/categories
 Content-Type: application/json
 
 {
-     "CategoryName": "Horror"
+     "categoryName": "Horror"
 }
 
 ### Egy category
@@ -95,7 +95,7 @@ get http://localhost:3000/api/seriesabc
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTEyNTYzOCwiZXhwIjoxNjQ1MTI5MjM4fQ.62U_xM_tXvohkZ1TlZqxSLLil5Y1dTbfmPgB2JYUlsQ
 
 ### Egy series
-get http://localhost:3000/api/series/2
+get http://localhost:3000/api/series/9
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTQ0NjI3MiwiZXhwIjoxNjQ1NDQ5ODcyfQ.mt6Ga598tVLQ3QXty4BF-amaU2Jbaww4U5z5AaUXvsg
 
 ### series releaseDate
@@ -110,7 +110,7 @@ Content-Type: application/json
     "seriesName": "The Walking Dead",
     "releaseDate": "2010",
     "ageLimit": "18",
-    "categoryId": 2
+    "categoryId": 1
 }
 
 ### series módosítása
@@ -120,20 +120,20 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiO
 
 {
     "seriesName": "The Walking Dead",
-    "releaseDate": "2010",
+    "releaseDate": "2015",
     "ageLimit": "18",
     "categoryId": 1,
-    "id": 1
+    "id": 9
 }
 
 ### Delete Series
-delete http://localhost:3000/api/user/series/12
+delete http://localhost:3000/api/series
 Content-Type: application/json
 
-# {
-#     "id": 5
+{
+    "id": 10
 
-#     }
+    }
 
 ### get favorite
 get http://localhost:3000/api/user/series/favorite
@@ -144,7 +144,7 @@ get http://localhost:3000/api/user/favorite/series
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTE4NDU0OCwiZXhwIjoxNjQ1MTg4MTQ4fQ.ZfziExVQH3QxqR0Fy9TEVcgbaFfrEnyNDVhuF389Irw
 
 ### Egy favorite
-get http://localhost:3000/api/user/favorite/series
+get http://localhost:3000/api/favorite
 Authorization: Bearer
 
 # ### Egy autó tripjei trip
@@ -152,23 +152,23 @@ Authorization: Bearer
 # Authorization: Bearer
 
 ### favorite hozzáadása
-post http://localhost:3000/api/user/favorite/series
+post http://localhost:3000/api/favorite
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NTQ0NjI3MiwiZXhwIjoxNjQ1NDQ5ODcyfQ.mt6Ga598tVLQ3QXty4BF-amaU2Jbaww4U5z5AaUXvsg
 
 { 
-    "userId": "10", 
-    "seriesId": "51", 
+    "userId": "1", 
+    "seriesId": "10", 
     "watched": "watched"
  }
 
 ### favorite módosítása
-put http://localhost:3000/api/user/series/favorite
+put http://localhost:3000/api/favorite
 Content-Type: application/json
 
 {
-    "userId": "12",
-    "seriesId": "13",
+    "userId": "1",
+    "seriesId": "10",
     "watched": "progress",
     "id": 7 
     
@@ -186,26 +186,18 @@ Content-Type: application/json
 get http://localhost:3000/api/user/series/favorite
 
 ### Create Comment
-post http://localhost:3000/api/user/series/comment
+post http://localhost:3000/api/comment
 Content-Type: application/json
 
 { 
     "userId": 1, 
     "comment": "I not like this", 
-    "seriesId": 1,
+    "seriesId": 10,
     "ratePoint": 3
  }
 
 ###Get comment 
-get http://localhost:3000/api/user/favorite/series/comment
+get http://localhost:3000/api/comment
 
-### GetseriesLink
-get http://localhost:3000/api/series/serieslink
-
-### series link delete
-delete http://localhost:3000/api/user/series/serieslink
-Content-Type: application/json
-
-{
-    "id": 7
-}
+###get DatetoCards
+get http://localhost:3000/api/getDataToCards

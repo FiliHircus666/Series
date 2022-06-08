@@ -1,12 +1,10 @@
 <template>
     <div class="my-border">
-        <h1>Series</h1>
+        <h1>Categories</h1>
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col">Series Name</th>
-                    <th scope="col">Release date</th>
-                    <th scope="col">Age limit</th>
+                    
                     <th scope="col">Category Name</th>
                     <th scope="col">
                         <!-- new -->
@@ -20,18 +18,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(series, index) in serieses" :key="index">
-                    <td>{{ series.seriesName }}</td>
-                    <td>{{ series.releaseDate }}</td>
-                    <td>{{ series.ageLimit }}</td>
-                    <td>{{ series.categoryName }}</td>
-
+                <tr v-for="(category, index) in categories" :key="index">
+                    
+                    <td>{{ category.categoryName }}</td>
+                    
                     <td>
                         <!-- edit -->
                         <button
                             type="button"
                             class="btn btn-outline-warning ms-1 btn-sm"
-                            @click="onClickEdit(series.id)">
+                            @click="onClickEdit(category.id)">
                             <i class="bi bi-pencil"></i>
                         </button>
 
@@ -39,7 +35,7 @@
                         <button
                             type="button"
                             class="btn btn-outline-danger ms-1 btn-sm"
-                            @click="onClickDelete(series.id)">
+                            @click="onClickDelete(category.id)">
                             <i class="bi bi-trash"></i>
                         </button>
                     </td>
@@ -76,72 +72,25 @@
                             <!-- űrlap -->
                             <!-- name -->
                             <div class="mb-3 col-12">
-                                <label for="seriesName" class="form-label"
-                                    >Sorozat név:
+                                <label for="categoryName" class="form-label"
+                                    >Kategoria név:
                                 </label>
                                 <input
                                     type="text"
                                     class="form-control"
-                                    id="seriesName"
-                                    placeholder="Sorozat neve"
-                                    v-model="series.seriesName"
+                                    id="categoryName"
+                                    placeholder="Kategoria neve"
+                                    v-model="category.categoryName"
                                     required />
                                 <div class="invalid-feedback">
-                                    A sorozat kötelező!
+                                    A Kategoria kötelező!
                                 </div>
                             </div>
-                            <div class="mb-3 col-12">
-                                <label for="releaseDate" class="form-label"
-                                    >Kiadási dátum:
-                                </label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="releaseDate"
-                                    placeholder="Kiadási dátum"
-                                    v-model="series.releaseDate"
-                                    required />
-                                <div class="invalid-feedback">
-                                    A kiadási dátum kötelező!
-                                </div>
-                            </div>
-                            <div class="mb-3 col-12">
-                                <label for="ageLimit" class="form-label"
-                                    >Korhatár:
-                                </label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="ageLimit"
-                                    placeholder="Korhatár"
-                                    v-model="series.ageLimit"
-                                    required />
-                                <div class="invalid-feedback">
-                                    A korhatár kötelező!
-                                </div>
-                            </div>
-                            <div class="mb-3 col-12">
-                                <label for="categories" class="form-label"
-                                    >Kategória név:
-                                </label>
-                                <select
-                                    id="categories"
-                                    class="form-select"
-                                    v-model="series.categoryId">
-                                    <option
-                                        v-for="(category,index) in categories"
-                                        :key="index"
-                                         :value="category.id">
-                                        {{category.categoryName}}
-                                    </option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    A kategória kötelező!
-                                </div>
-                            </div>
-                            <!-- licenseNumber -->
 
+                            <!-- licenseNumber -->
+                           
                             <!-- hourlyRate -->
+                         
                         </form>
                     </div>
 
@@ -166,41 +115,31 @@
 </template>
 
 <script>
-class Series {
-    constructor(
-        id = null,
-        seriesName = null,
-        releaseDate = null,
-        ageLimit = null,
-        categoryId = null
-    ) {
+class Category {
+    constructor(id = null, categoryName = null) {
         this.id = id;
-        this.seriesName = seriesName;
-        this.releaseDate = releaseDate;
-        this.ageLimit = ageLimit;
-        this.categoryId = categoryId;
+        this.categoryName = categoryName;
+      
     }
 }
 
 import * as bootstrap from "bootstrap";
 
 export default {
-    name: "Series",
+    name: "Category",
     data() {
         return {
-            serieses: [],
+            categories: [],
             state: "view",
             stateTitle: null,
-            series: new Series(),
-            categories: [],
+            category: new Category(),
             form: null,
-            isValid: null,
+            
         };
     },
     created() {
-        // this.getSeriesLink();
-        this.getSeries();
         this.getCategories();
+        
     },
     mounted() {
         this.modal = new bootstrap.Modal(document.getElementById("modal"), {
@@ -209,52 +148,9 @@ export default {
         this.form = document.querySelector(".needs-validation");
     },
     methods: {
-        loggedIn() {
-            return Boolean(this.$root.$data.user.permission);
-        },
-
-        getSeries() {
+        getCategories() {
             let headers = new Headers();
 
-            headers.append("Content-Type", "application/json");
-            headers.append("Authorization", "Bearer " + this.$root.$data.token);
-            const url = `${this.$loginServer}/api/series`;
-            fetch(url, {
-                method: "GET",
-                headers: headers,
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log("Success:", data.data);
-                    this.serieses = data.data;
-                })
-                .catch((error) => {
-                    console.error("Error:", error);
-                    this.serieses = [];
-                });
-        },
-        getSeriesById(id) {
-            let headers = new Headers();
-
-            headers.append("Content-Type", "application/json");
-            headers.append("Authorization", "Bearer " + this.$root.$data.token);
-            const url = `${this.$loginServer}/api/series/${id}`;
-            fetch(url, {
-                method: "GET",
-                headers: headers,
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log("Success:", data.data);
-                    this.series = data.data;
-                })
-                .catch((error) => {
-                    console.error("Error:", error);
-                    this.series = new Series();
-                });
-        },
-           getCategories() {
-            let headers = new Headers();
             headers.append("Content-Type", "application/json");
             headers.append("Authorization", "Bearer " + this.$root.$data.token);
             const url = `${this.$loginServer}/api/categories`;
@@ -264,7 +160,7 @@ export default {
             })
                 .then((response) => response.json())
                 .then((data) => {
-                    console.log("Category data:", data.data);
+                    console.log("Success:", data.data);
                     this.categories = data.data;
                 })
                 .catch((error) => {
@@ -272,13 +168,33 @@ export default {
                     this.categories = [];
                 });
         },
-        updateSeries() {
+        getCategoriesById(id) {
             let headers = new Headers();
 
             headers.append("Content-Type", "application/json");
             headers.append("Authorization", "Bearer " + this.$root.$data.token);
-            const url = `${this.$loginServer}/api/series`;
-            let data = this.series;
+            const url = `${this.$loginServer}/api/categories/${id}`;
+            fetch(url, {
+                method: "GET",
+                headers: headers,
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log("Success:", data.data);
+                    this.category = data.data;
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    this.category = new Category();
+                });
+        },
+        updateCategories() {
+            let headers = new Headers();
+
+            headers.append("Content-Type", "application/json");
+            headers.append("Authorization", "Bearer " + this.$root.$data.token);
+            const url = `${this.$loginServer}/api/categories`;
+            let data = this.category;
             fetch(url, {
                 method: "PUT",
                 headers: headers,
@@ -287,18 +203,18 @@ export default {
                 .then((response) => response.json())
                 .then((data) => {
                     console.log("Success:", data.data);
-                    this.getSeries();
+                    this.getCategories();
                 })
                 .catch((error) => {
                     console.error("Error:", error);
                 });
         },
-        deleteSeries(id) {
+        deleteCategories(id) {
             let headers = new Headers();
 
             headers.append("Content-Type", "application/json");
             headers.append("Authorization", "Bearer " + this.$root.$data.token);
-            const url = `${this.$loginServer}/api/series`;
+            const url = `${this.$loginServer}/api/categories`;
             let data = {
                 id: id,
             };
@@ -309,20 +225,20 @@ export default {
             })
                 .then((response) => response.json())
                 .then((data) => {
-                    console.log("Delete data:", data.data);
-                    this.getSeries();
+                    console.log("Success:", data.data);
+                    this.getCategories();
                 })
                 .catch((error) => {
                     console.error("Error:", error);
                 });
         },
-        createSeries() {
+        createCategories() {
             let headers = new Headers();
 
             headers.append("Content-Type", "application/json");
             headers.append("Authorization", "Bearer " + this.$root.$data.token);
-            const url = `${this.$loginServer}/api/series`;
-            let data = this.series;
+            const url = `${this.$loginServer}/api/categories`;
+            let data = this.category;
             delete data.id;
             fetch(url, {
                 method: "POST",
@@ -332,49 +248,44 @@ export default {
                 .then((response) => response.json())
                 .then((data) => {
                     console.log("Success:", data.data);
-                    this.getSeries();
+                    this.getCategories();
+                    this.state = "view";
                 })
                 .catch((error) => {
                     console.error("Error:", error);
+                    this.state = "view";
                 });
         },
-     
         onClickNew() {
             this.state = "new";
-            this.stateTitle = "Új sorozat";
-            this.series = new Series();
+            this.stateTitle = "Új Category";
+            this.category = new Category();
             this.modal.show();
         },
         onClickEdit(id) {
             this.state = "edit";
-            this.stateTitle = "Adatmódosítás";
+            this.stateTitle = "Category modosítás";
+            this.getCategoriesById(id);
             this.modal.show();
-            this.getSeriesById(id);
         },
         onClickDelete(id) {
             this.state = "delete";
-            this.deleteSeries(id);
+            this.deleteCategories(id);
             this.state = "view";
         },
         onClickCancel() {
             this.state = "view";
             this.modal.hide();
         },
-        //  onClickFavorite(id){
-        //     this.state = "new";
-        //     this.state = "Favorite-hoz adás";
-        //     this.favorite = new Favorite();
-        //     this.state = "view";
-        // },
         onClickSaveData() {
             this.form.classList.add("was-validated");
             if (this.form.checkValidity()) {
                 if (this.state == "edit") {
                     //put
-                    this.updateSeries();
+                    this.updateCategories();
                 } else if (this.state == "new") {
                     //post
-                    this.createSeries();
+                    this.createCategories();
                 }
             } else {
                 return;
@@ -382,46 +293,9 @@ export default {
             this.modal.hide();
             this.state = "view";
         },
-        onClickRow(id) {
-            this.isValid = id;
-        },
     },
 };
 </script>
 
 <style>
-.button-right {
-    text-align: justify;
-    margin: 0 40%;
-    width: 20%;
-}
-div {
-    color: white;
-}
-.table {
-    color: white;
-}
-.icons-color {
-    color: white;
-}
-tbody {
-    max-width: 50%;
-}
-.modal-header {
-    color: black;
-}
-label {
-    color: black;
-}
-h4,
-p {
-    color: black;
-}
-img {
-    max-width: 100%;
-}
-textarea {
-    max-width: 75%;
-    margin: 0 12%;
-}
 </style>

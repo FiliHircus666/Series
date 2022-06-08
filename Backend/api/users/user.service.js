@@ -5,7 +5,7 @@ module.exports = {
         let queryString = `insert into users
             (userName,password,email,permission)
             values
-            (?,?,?,?)
+            (?,?,?,0)
         `
         let params = [
             data.userName,
@@ -23,15 +23,16 @@ module.exports = {
     },
     createSeries: (data, callBack) => {
         let queryString = `INSERT INTO series
-                    (seriesName,releaseDate,ageLimit,categoryId)
+                    (seriesName,releaseDate,ageLimit,categoryId,image)
                     VALUES
-                    (?, ?, ?, ?)
+                    (?, ?, ?, ?,?)
         `
         let params = [
             data.seriesName,
             data.releaseDate,
             data.ageLimit,
-            data.categoryId
+            data.categoryId,
+            data.image
         ];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
@@ -62,7 +63,7 @@ module.exports = {
      WHERE id = ?`;
         // const params = Object.values(data);
         const params = [
-            data.CategoryName,
+            data.categoryName,
             data.id
         ]
         console.log("Update category:",params);
@@ -77,6 +78,18 @@ module.exports = {
     },
     getCategories: callBack => {
         const queryString = `select * from categories`;
+        const params = [];
+        pool.query(queryString, params, (error, results, fields) => {
+            if (error) {
+                return callBack(error);
+
+            }
+            return callBack(null, results);
+        });
+    },
+    getDataToCards: callBack => {
+        const queryString = `select s.id,s.seriesName,s.releaseDate,s.ageLimit,s.categoryId,s.image,c.categoryName from series s 
+        INNER JOIN categories c on c.id = s.categoryId`;
         const params = [];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
@@ -166,7 +179,8 @@ module.exports = {
         });
     },
     getSeries: callBack => {
-        const queryString = `select * from series`;
+        const queryString = `select s.id,s.seriesName,s.releaseDate,s.ageLimit,s.categoryId,s.image,c.categoryName from series s 
+        INNER JOIN categories c on c.id = s.categoryId `;
         const params = [];
         pool.query(queryString, params, (error, results, fields) => {
             if (error) {
@@ -315,7 +329,7 @@ module.exports = {
     },
     updateSeries: (data, callBack) => {
         const queryString = `UPDATE series set
-        seriesName=?, releaseDate=?, ageLimit=?, categoryId=?
+        seriesName=?, releaseDate=?, ageLimit=?, categoryId=? image = ?
                 where id= ?`;
         // const params = Object.values(data);
         const params = [
@@ -323,6 +337,7 @@ module.exports = {
             data.releaseDate,
             data.ageLimit,
             data.categoryId,
+            data.image,
             data.id
         ]
         console.log("Update series:",params);

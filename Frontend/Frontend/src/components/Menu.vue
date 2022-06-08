@@ -48,6 +48,12 @@
                                         to="/series"
                                         >Sorozatok</router-link
                                     >
+                                     <li>
+                                    <router-link
+                                        class="dropdown-item"
+                                        to="/categories"
+                                        >Kategoriák</router-link
+                                    >
                                 </li>
                                 
                                 <li><hr class="dropdown-divider" /></li>

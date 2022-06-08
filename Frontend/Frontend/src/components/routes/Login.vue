@@ -75,7 +75,7 @@ export default {
     },
     methods: {
         onClickLogin() {
-            const url = `${this.$loginServer}/api/users/login`;
+            const url = `${this.$loginServer}/api/login`;
             let headers = new Headers();
             headers.append("Content-Type", "application/json");
             fetch(url, {

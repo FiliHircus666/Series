@@ -30,7 +30,7 @@
                 type="email"
                 class="form-control"
                 id="Email"
-                v-model="registerData.Email" />
+                v-model="registerData.email" />
             </div>
         </div>
         <button type="button" class="btn btn-primary register-bottom-center " @click="onClickRegister()">
@@ -62,7 +62,7 @@ export default {
             registerData: {
                 userName: "user237",
                 password: "userPass2",
-                Email: "user237@gmail.com",
+                email: "user237@gmail.com",
             },
             registerResponse: {
                 success: 0,
@@ -75,7 +75,7 @@ export default {
     },
     methods: {
         onClickRegister() {
-            const url = `${this.$loginServer}/api/users/register`;
+            const url = `${this.$loginServer}/api/register`;
             let headers = new Headers();
             headers.append("Content-Type", "application/json");
             fetch(url, {

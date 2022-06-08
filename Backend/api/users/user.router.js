@@ -29,7 +29,8 @@ const {
     getCategories,
     updateCategories,
     getCategoriesById,
-    deleteCategories
+    deleteCategories,
+    getDataToCards
     
 } = require("./user.controller.js")
 const router = require("express").Router();
@@ -48,13 +49,13 @@ router.get("/seriesabc", checkToken, getSeriesABC);
 router.get("/series/:id", checkToken, getSeriesById);
 router.get("/series/:releaseDate", checkToken, getSeriesRelease);
 router.put("/series", checkToken, updateSeries);
-router.delete("/series/:id", checkToken, deleteSeries);
+router.delete("/series", checkToken, deleteSeries);
 
-router.post("/user/favorite/series", checkToken, createFavorite);
-router.get("/user/favorite/series", checkToken, getFavorites);
-router.get("/user/series/favorites/:id", checkToken, getFavoriteById);
-router.put("/user/series/favorite", checkToken, updateFavorite);
-router.delete("/user/series/favorite", checkToken, deleteFavorite);
+router.post("/favorite", checkToken, createFavorite);
+router.get("/favorite", checkToken, getFavorites);
+router.get("/favorites/:id", checkToken, getFavoriteById);
+router.put("/favorite", checkToken, updateFavorite);
+router.delete("/favorite", checkToken, deleteFavorite);
 
 router.post("/comment", checkToken, createComment);
 router.get("/comment", checkToken, getComments);
@@ -68,9 +69,7 @@ router.delete("/categories", checkToken, deleteCategories);
 router.put("/categories", checkToken, updateCategories);
 router.get("/categories/:id", checkToken, getCategoriesById);
 
-router.get("/series/serieslink", checkToken, getSeriesLink);
-router.delete("/series/serieslink", checkToken, deleteSeriesLink);
-router.put("/series/serieslink", checkToken, updateSeriesLink);
-router.get("/series/serieslink/:id", checkToken, getSeriesLinkById);
+router.get("/getDataToCards", checkToken, getDataToCards);
+
 
 module.exports = router;
